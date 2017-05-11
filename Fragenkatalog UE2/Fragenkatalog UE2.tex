@@ -28,6 +28,9 @@
 \usepackage{subcaption}
 \usepackage{enumitem}
 \usepackage{algpseudocode} %for pseudocode
+\usepackage[siunitx,european,straightlabels,straightvoltages]{circuitikz} %draw Electrical Circuits
+
+\input{../mymeters.tex}
 
 \author{Alexander Halbarth}
 
@@ -136,9 +139,18 @@ Tera   & T  & $10^{12}$\\
 \end{tabular}\\
 \textbf{Frage 3: Skizziere Kurvenform und Spektrum eines Sinus / symmetrischen Rechteck / Impuls - Signals.\\
 Hinweis: Du legst fest, was genau Du unter "`Impuls"' verstehst. Das Spektrum muss zur angegebenen Kurvenform passen!}\\
-\\
+\begin{figure}[!htb]
+\minipage{0.32\textwidth}
+  \includegraphics[width=\linewidth]{rechteck.png}
+\endminipage\hfill
+\minipage{0.32\textwidth}
+  \includegraphics[width=\linewidth]{sinus.png}
+\endminipage\hfill
+\minipage{0.32\textwidth}
+  \includegraphics[width=\linewidth]{impuls.png}
+\endminipage
+\end{figure}
 \textbf{Frage 3: Skizziere den Verlauf des Quotienten U / I eines ohmschen Widerstandes}\\
-
 \textbf{Begründe Deine Skizzen durch die Angabe der Berechnungsformeln.}\\
 
 \textbf{/ eines idealen Kondensators} \\
@@ -147,19 +159,51 @@ Hinweis: Du legst fest, was genau Du unter "`Impuls"' verstehst. Das Spektrum mu
 
 
 \textbf{Frage 3: Erkläre die Bedeutung von $dB$.}\\
-
+$10\cdot log(\frac{P_1}{P_2})$
 \textbf{Welches Spannungsverhältnis wird durch $20dB$ ausgedrückt?}\\
-
+$20 \cdot log(\frac{U_1}{U2})=20 \rightarrow U_1=U_2\cdot10^{1}$
 \textbf{Frage 3: In einen Stromknoten mit drei Leitungen fließen aus einer Leitung $2A$ sinusförmiger $50Hz$ Wechselstrom hinein und aus einer anderen Leitung $3A$ sinusförmiger $50Hz$ Wechselstrom hinein. \\
 Kannst Du anhand dieser Angaben berechnen, was in der dritten Leitung geschieht? Begründe Deine Entscheidung!}\\
 Ein Wechselstrom von $5A$ fließt hinaus. Da die Knotenregel auch im Wechselstrom gilt.\\
 \textbf{Frage 4: Skizziere die Schaltung eines RC – Hochpassfilters. Gib seine Grenzfrequenz an.}\\
+  \begin{circuitikz} \draw
+			(0,0) to[V<=$U_{in}$,i^>=$I$] (0,2)
+						to[C]    (2,2)
+						to[R,v^>=$U_{out}$,*-*] (2,0)
+						-- (0,0)
+						(2,2)--(2.5,2)
+						(2,0)--(2.5,0);
+\end{circuitikz}
 \\
-\textbf{Frage 4: Skizziere die Schaltung eines RC – Tiefpassfilters. Gib seine Grenzfrequenz an.}
+\textbf{Frage 4: Skizziere die Schaltung eines RC – Tiefpassfilters. Gib seine Grenzfrequenz an.}\\
+  \begin{circuitikz} \draw
+			(0,0) to[V<=$U_{in}$,i^>=$I$] (0,2)
+						to[R]    (2,2)
+						to[C,v^>=$U_{out}$,*-*] (2,0)
+						-- (0,0)
+						(2,2)--(2.5,2)
+						(2,0)--(2.5,0);
+\end{circuitikz}
 \\
 \textbf{Frage 4: Skizziere die Schaltung eines RL – Hochpassfilters. Gib seine Grenzfrequenz an.}\\
+  \begin{circuitikz} \draw
+			(0,0) to[V<=$U_{in}$,i^>=$I$] (0,2)
+						to[R]    (2,2)
+						to[L,v^>=$U_{out}$,*-*] (2,0)
+						-- (0,0)
+						(2,2)--(2.5,2)
+						(2,0)--(2.5,0);
+\end{circuitikz}
 \\
 \textbf{Frage 4: Skizziere die Schaltung eines RL - Tiefpassfilters. Gib seine Grenzfrequenz an.}\\
+  \begin{circuitikz} \draw
+			(0,0) to[V<=$U_{in}$,i^>=$I$] (0,2)
+						to[L]    (2,2)
+						to[R,v^>=$U_{out}$,*-*] (2,0)
+						-- (0,0)
+						(2,2)--(2.5,2)
+						(2,0)--(2.5,0);
+\end{circuitikz}
 \\
 \textbf{Frage 4: Skizziere die Schaltung eines RLC - Bandpassfilters. (2 Antworten zulässig) Gib seine Mittenfrequenz an.}\\
 \\

@@ -1,0 +1,93 @@
+\ctikzset{bipoles/text rotate/.initial=0,% <=new key
+rotation/.style={\circuitikzbasekey/bipoles/text rotate=#1},% style for ease introduction in code
+}
+
+% code from pgfcircbipoles.sty
+\makeatletter
+\pgfcircdeclarebipole{}{\ctikzvalof{bipoles/ammeter/height}}{ammeter}{\ctikzvalof{bipoles/ammeter/height}}{\ctikzvalof{bipoles/ammeter/width}}{
+    \def\pgf@circ@temp{right}
+    \ifx\tikz@res@label@pos\pgf@circ@temp
+        \pgf@circ@res@step=-1.2\pgf@circ@res@up
+    \else
+        \def\pgf@circ@temp{below}
+        \ifx\tikz@res@label@pos\pgf@circ@temp
+            \pgf@circ@res@step=-1.2\pgf@circ@res@up
+        \else
+            \pgf@circ@res@step=1.2\pgf@circ@res@up
+        \fi
+    \fi
+
+    \pgfpathmoveto{\pgfpoint{\pgf@circ@res@left}{\pgf@circ@res@zero}}       
+    \pgfpointorigin \pgf@circ@res@other =  \pgf@x  \advance \pgf@circ@res@other by -\pgf@circ@res@up
+    \pgfpathlineto{\pgfpoint{\pgf@circ@res@other}{\pgf@circ@res@zero}}
+    \pgfusepath{draw}
+
+    \pgfsetlinewidth{\pgfkeysvalueof{/tikz/circuitikz/bipoles/thickness}\pgfstartlinewidth}
+
+        \pgfscope
+            \pgfpathcircle{\pgfpointorigin}{\pgf@circ@res@up} % change this if you want to touch the wires
+            \pgfusepath{draw}       
+        \endpgfscope    
+
+    \pgftransformrotate{\ctikzvalof{bipoles/text rotate}}% <= magic line
+    \pgfsetlinewidth{\pgfstartlinewidth}
+
+    \pgfsetarrowsend{latex}
+    \pgfpathmoveto{\pgfpoint{\pgf@circ@res@other}{\pgf@circ@res@down}}
+    \pgfpathlineto{\pgfpoint{-1.06\pgf@circ@res@other}{1.06\pgf@circ@res@up}} % change this if you want to touch the wires
+    %\pgfusepath{draw} % comment this if you don't need the diagonal arrow
+    \pgfsetarrowsend{}
+
+
+    \pgfpathmoveto{\pgfpoint{-\pgf@circ@res@other}{\pgf@circ@res@zero}}
+    \pgfpathlineto{\pgfpoint{\pgf@circ@res@right}{\pgf@circ@res@zero}}
+    %\pgfusepath{draw} % comment this if you don't need the diagonal arrow
+
+
+    \pgfnode{circle}{center}{\textbf{A}}{}{}
+}
+
+% code from pgfcircbipoles.sty
+\pgfcircdeclarebipole{}{\ctikzvalof{bipoles/voltmeter/height}}{voltmeter}{\ctikzvalof{bipoles/voltmeter/height}}{\ctikzvalof{bipoles/voltmeter/width}}{
+    \def\pgf@circ@temp{right}
+    \ifx\tikz@res@label@pos\pgf@circ@temp
+        \pgf@circ@res@step=-1.2\pgf@circ@res@up
+    \else
+        \def\pgf@circ@temp{below}
+        \ifx\tikz@res@label@pos\pgf@circ@temp
+            \pgf@circ@res@step=-1.2\pgf@circ@res@up
+        \else
+            \pgf@circ@res@step=1.2\pgf@circ@res@up
+        \fi
+    \fi
+
+    \pgfpathmoveto{\pgfpoint{\pgf@circ@res@left}{\pgf@circ@res@zero}}       
+    \pgfpointorigin \pgf@circ@res@other =  \pgf@x  \advance \pgf@circ@res@other by -\pgf@circ@res@up
+    \pgfpathlineto{\pgfpoint{\pgf@circ@res@other}{\pgf@circ@res@zero}}
+    \pgfusepath{draw}
+
+    \pgfsetlinewidth{\pgfkeysvalueof{/tikz/circuitikz/bipoles/thickness}\pgfstartlinewidth}
+
+        \pgfscope
+            \pgfpathcircle{\pgfpointorigin}{\pgf@circ@res@up} % change this if you want to touch the wires
+            \pgfusepath{draw}       
+        \endpgfscope    
+
+    \pgftransformrotate{\ctikzvalof{bipoles/text rotate}}% <= magic line
+    \pgfsetlinewidth{\pgfstartlinewidth}
+
+    \pgfsetarrowsend{latex}
+    \pgfpathmoveto{\pgfpoint{\pgf@circ@res@other}{\pgf@circ@res@down}}
+    \pgfpathlineto{\pgfpoint{-1.06\pgf@circ@res@other}{1.06\pgf@circ@res@up}} % change this if you want to touch the wires
+    %\pgfusepath{draw} % comment this if you don't need the diagonal arrow
+    \pgfsetarrowsend{}
+
+
+    \pgfpathmoveto{\pgfpoint{-\pgf@circ@res@other}{\pgf@circ@res@zero}}
+    \pgfpathlineto{\pgfpoint{\pgf@circ@res@right}{\pgf@circ@res@zero}}
+    %\pgfusepath{draw} % comment this if you don't need the diagonal arrow
+
+
+    \pgfnode{circle}{center}{\textbf{V}}{}{}
+}
+\makeatother
