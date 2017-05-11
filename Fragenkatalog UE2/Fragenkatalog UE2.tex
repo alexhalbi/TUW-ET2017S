@@ -10,6 +10,7 @@
 \usepackage{graphicx}
 \usepackage{multirow}
 \usepackage{fancyhdr}
+\usepackage{float}
 \pagestyle{fancy}
 \usepackage[a4paper,
 			bottom=1.7in,
@@ -46,7 +47,7 @@ endbox/.style={pattern=crosshatch,minimum height=.8cm}}
 \usepackage{framed, color}
 
 
-\newcommand{\UE}{Übung 1}
+\newcommand{\UE}{Übung 2}
 \newcommand{\name}{Fragenkatalog zum Überprüfungsgespräch Elektrotechnische Grundlagen}
 \title{\textbf{Fragenkatalog zum Überprüfungsgespräch Elektrotechnische Grundlagen Übungen für TI 2017 - \UE}}
 
@@ -70,7 +71,6 @@ endbox/.style={pattern=crosshatch,minimum height=.8cm}}
 
 \begin{document}
 \maketitle
-
 \textbf{Frage 1: Was machst Du gerade im Labor und welchen Sinn hat das?}\\
 \textbf{Frage 2: Nenne die Grundgrößen der Elektrotechnik, deren Formelzeichen und Einheit.}\\
 Spannung $U[$Volt $V]$, Strom $I[$Ampere $A]$, Widerstand $R[$Ohm $\Omega]$,Leistung $P[$Watt $W]$\\
@@ -139,7 +139,7 @@ Tera   & T  & $10^{12}$\\
 \end{tabular}\\
 \textbf{Frage 3: Skizziere Kurvenform und Spektrum eines Sinus / symmetrischen Rechteck / Impuls - Signals.\\
 Hinweis: Du legst fest, was genau Du unter "`Impuls"' verstehst. Das Spektrum muss zur angegebenen Kurvenform passen!}\\
-\begin{figure}[!htb]
+\begin{figure}[H]
 \minipage{0.32\textwidth}
   \includegraphics[width=\linewidth]{rechteck.png}
 \endminipage\hfill
@@ -159,9 +159,9 @@ Hinweis: Du legst fest, was genau Du unter "`Impuls"' verstehst. Das Spektrum mu
 
 
 \textbf{Frage 3: Erkläre die Bedeutung von $dB$.}\\
-$10\cdot log(\frac{P_1}{P_2})$
+$10\cdot log(\frac{P_1}{P_2})$\\
 \textbf{Welches Spannungsverhältnis wird durch $20dB$ ausgedrückt?}\\
-$20 \cdot log(\frac{U_1}{U2})=20 \rightarrow U_1=U_2\cdot10^{1}$
+$20 \cdot log(\frac{U_1}{U2})=20 \rightarrow U_1=U_2\cdot10^{1}$\\
 \textbf{Frage 3: In einen Stromknoten mit drei Leitungen fließen aus einer Leitung $2A$ sinusförmiger $50Hz$ Wechselstrom hinein und aus einer anderen Leitung $3A$ sinusförmiger $50Hz$ Wechselstrom hinein. \\
 Kannst Du anhand dieser Angaben berechnen, was in der dritten Leitung geschieht? Begründe Deine Entscheidung!}\\
 Ein Wechselstrom von $5A$ fließt hinaus. Da die Knotenregel auch im Wechselstrom gilt.\\
@@ -173,8 +173,9 @@ Ein Wechselstrom von $5A$ fließt hinaus. Da die Knotenregel auch im Wechselstro
 						-- (0,0)
 						(2,2)--(2.5,2)
 						(2,0)--(2.5,0);
-\end{circuitikz}
-\\
+\end{circuitikz}\\
+$X_C=R=-\dfrac{1}{2\pi \cdot f \cdot C}$\\
+$f_G=-\dfrac{1}{2\pi \cdot R \cdot C}$\\
 \textbf{Frage 4: Skizziere die Schaltung eines RC – Tiefpassfilters. Gib seine Grenzfrequenz an.}\\
   \begin{circuitikz} \draw
 			(0,0) to[V<=$U_{in}$,i^>=$I$] (0,2)
@@ -183,8 +184,9 @@ Ein Wechselstrom von $5A$ fließt hinaus. Da die Knotenregel auch im Wechselstro
 						-- (0,0)
 						(2,2)--(2.5,2)
 						(2,0)--(2.5,0);
-\end{circuitikz}
-\\
+\end{circuitikz}\\
+$X_C=R=-\dfrac{1}{2\pi \cdot f \cdot C}$\\
+$f_G=-\dfrac{1}{2\pi \cdot R \cdot C}$\\
 \textbf{Frage 4: Skizziere die Schaltung eines RL – Hochpassfilters. Gib seine Grenzfrequenz an.}\\
   \begin{circuitikz} \draw
 			(0,0) to[V<=$U_{in}$,i^>=$I$] (0,2)
@@ -193,8 +195,9 @@ Ein Wechselstrom von $5A$ fließt hinaus. Da die Knotenregel auch im Wechselstro
 						-- (0,0)
 						(2,2)--(2.5,2)
 						(2,0)--(2.5,0);
-\end{circuitikz}
-\\
+\end{circuitikz}\\
+$X_L=R=2\pi \cdot f \cdot L$\\
+$f_G=\dfrac{R}{2\pi \cdot L}$\\
 \textbf{Frage 4: Skizziere die Schaltung eines RL - Tiefpassfilters. Gib seine Grenzfrequenz an.}\\
   \begin{circuitikz} \draw
 			(0,0) to[V<=$U_{in}$,i^>=$I$] (0,2)
@@ -203,41 +206,63 @@ Ein Wechselstrom von $5A$ fließt hinaus. Da die Knotenregel auch im Wechselstro
 						-- (0,0)
 						(2,2)--(2.5,2)
 						(2,0)--(2.5,0);
-\end{circuitikz}
-\\
+\end{circuitikz}\\
+$X_L=R=2\pi \cdot f \cdot L$\\
+$f_G=\dfrac{R}{2\pi \cdot L}$\\
 \textbf{Frage 4: Skizziere die Schaltung eines RLC - Bandpassfilters. (2 Antworten zulässig) Gib seine Mittenfrequenz an.}\\
-\\
+\begin{circuitikz} \draw
+			(0,0) to[V<=$U_{in}$,i^>=$I$] (0,2)
+						to[L]    (2,2)
+						to[C] (4,2)
+						to[R,v^>=$U_{out}$,*-*] (4,0)
+						-- (0,0)
+						(4,2)--(4.5,2)
+						(4,0)--(4.5,0);
+\end{circuitikz}\\
+$f_0=\dfrac{1}{2\pi\sqrt{C\cdot L}}$\\
 \textbf{Frage 4: Skizziere das Bode-Diagramm eines RC - Hochpassfilters. Achte auf die korrekte Achsenteilung!}\\
-\\
+\includegraphics[height=7cm]{hochpass_bode.png}\\
 \textbf{Frage 4: Skizziere die Sprungantwort eines Tiefpassfilters 1. Ordnung.}\\
-\\
+\includegraphics[width=7cm]{sprung_tiefpass.png}\\
 \textbf{Skizziere die Sprungantwort eines Hochpassfilters 1. Ordnung.}\\
-\\
+\includegraphics[width=7cm]{sprung_hochpass.png}\\
 \textbf{Begründe Deine Darstellungen.}\\
-\\
-\textbf{Frage 4: Durch welche beiden Messungen lassen sich Filter besonders effektiv charakterisieren?}
-\\
+Der Hochpass versucht die Spannung konstant zu halten und erhöht deswegen schlagartig die Spannung bis diese langsam absinkt.\\
+Der Tiefpass versucht den Strom konstant zu halten und erhöht deswegen schlagartig den Strom.\\
+\textbf{Frage 4: Durch welche beiden Messungen lassen sich Filter besonders effektiv charakterisieren?}\\
+Sprungantwort und Frequenzverhalten.\\
 \textbf{Wie gehst Du dabei praktisch vor?}\\
 \\
 \textbf{Frage 4: Wie verhält sich die Ausgangsspannung eines Tiefpassfilters bei sinusförmigen Eingangsspannungen mit Frequenzen weit unter der Grenzfrequenz?}\\
-\\
+Fast genauso wie die Eingangsspannung.\\
 \textbf{Wie verhält sich die Ausgangsspannung eines Tiefpassfilters bei rechteckförmigen Eingangsspannungen mit Periodenzeiten kleiner als die Zeitkonstante?}\\
 \\
 \textbf{Frage 4: Wie verläuft die Übertragungsfunktion eines Tiefpassfilters bei Frequenzen deutlich höher als die Grenzfrequenz?}\\
-\\
+Sie werden fast vollständig blockiert.\\
 \textbf{Durch welche elektrotechnische Größe wird dieser Verlauf quantifiziert?}\\
 \\
 \textbf{Frage 4: Wie verläuft die Übertragungsfunktion eines Hochpassfilters bei Frequenzen deutlich niedriger als die Grenzfrequenz?}\\
-\\
+Sie werden fast vollständig blockiert.\\
 \textbf{Durch welche elektrotechnische Größe wird dieser Verlauf quantifiziert?}\\
 \\
 \textbf{Frage 5: Welchen Vorteil haben Tiefpassfilter 2. Ordnung gegenüber Tiefpassfiltern 1. Ordnung?}\\
-\\
+\begin{circuitikz} \draw
+			(0,0) to[V<=$U_{in}$,i^>=$I$] (0,2)
+						to[L]    (2,2)
+						to[C] (4,2)
+						to[R,v^>=$U_{out}$,*-*] (4,0)
+						-- (0,0)
+						(4,2)--(4.5,2)
+						(4,0)--(4.5,0);
+\end{circuitikz}\\
+Abfall der Frequenz um $40dB/Dekade$ statt $20$. Dh. Effektiver\\
 \textbf{Skizziere die Übertragungsfunktionen im Frequenzbereich.}\\
-\\
+\includegraphics[width=7cm]{tiefpass_2o.png}\\\\
 \textbf{Frage 5: Dieses Diagramm zeigt zwei Sprungantworten eines dynamischen Systems 2. Ordnung, beispielsweise eines LCR - Bandpassfilters.\\
 Was sagen diese beiden Sprungantworten über die Dämpfung aus? \\
-Wie ist das möglich, dass eine negative Spannung auftritt, obwohl nur passive Bauelemente verwendet werden?}\\
 \includegraphics[width=4cm,keepaspectratio]{sprungantwort.jpg}\\
-\\
+1. Antwort: $\dfrac{R}{2L}\geq\dfrac{1}{\sqrt{L\cdot C}}$\\
+2. Antwort: $\dfrac{R}{2L} < \dfrac{1}{\sqrt{L\cdot C}}$\\
+Wie ist das möglich, dass eine negative Spannung auftritt, obwohl nur passive Bauelemente verwendet werden?}\\
+Aufgrund des Schwingungsverhaltens zwischen Kondensator und Spule.\\
 \end{document}
