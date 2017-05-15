@@ -137,6 +137,7 @@ Giga   & G  & $10^{9}$\\
 Tera   & T  & $10^{12}$\\
 \hline
 \end{tabular}\\
+\newpage
 \textbf{Frage 3: Skizziere Kurvenform und Spektrum eines Sinus / symmetrischen Rechteck / Impuls - Signals.\\
 Hinweis: Du legst fest, was genau Du unter "`Impuls"' verstehst. Das Spektrum muss zur angegebenen Kurvenform passen!}\\
 \begin{figure}[H]
@@ -152,19 +153,19 @@ Hinweis: Du legst fest, was genau Du unter "`Impuls"' verstehst. Das Spektrum mu
 \end{figure}
 \textbf{Frage 3: Skizziere den Verlauf des Quotienten U / I eines ohmschen Widerstandes}\\
 \textbf{Begründe Deine Skizzen durch die Angabe der Berechnungsformeln.}\\
-
-\textbf{/ eines idealen Kondensators} \\
-
-\textbf{/ einer idealen Spule als Funktion der Frequenz.}\\
-
+konstant
+\textbf{Skizziere den Verlauf des Quotienten U / I eines idealen Kondensators} \\
+Hyperbel
+\textbf{Skizziere den Verlauf des Quotienten U / I einer idealen Spule als Funktion der Frequenz.}\\
+linear
 
 \textbf{Frage 3: Erkläre die Bedeutung von $dB$.}\\
 $10\cdot log(\frac{P_1}{P_2})$\\
 \textbf{Welches Spannungsverhältnis wird durch $20dB$ ausgedrückt?}\\
-$20 \cdot log(\frac{U_1}{U2})=20 \rightarrow U_1=U_2\cdot10^{1}$\\
+$20 \cdot log(\frac{U_1}{U2})=2 \rightarrow U_1=U_2\cdot10^{1}$\\
 \textbf{Frage 3: In einen Stromknoten mit drei Leitungen fließen aus einer Leitung $2A$ sinusförmiger $50Hz$ Wechselstrom hinein und aus einer anderen Leitung $3A$ sinusförmiger $50Hz$ Wechselstrom hinein. \\
 Kannst Du anhand dieser Angaben berechnen, was in der dritten Leitung geschieht? Begründe Deine Entscheidung!}\\
-Ein Wechselstrom von $5A$ fließt hinaus. Da die Knotenregel auch im Wechselstrom gilt.\\
+Nein, da wir die Phasenverschiebungen der einzelnen Leitungen nicht kennen.\\
 \textbf{Frage 4: Skizziere die Schaltung eines RC – Hochpassfilters. Gib seine Grenzfrequenz an.}\\
   \begin{circuitikz} \draw
 			(0,0) to[V<=$U_{in}$,i^>=$I$] (0,2)
@@ -174,8 +175,8 @@ Ein Wechselstrom von $5A$ fließt hinaus. Da die Knotenregel auch im Wechselstro
 						(2,2)--(2.5,2)
 						(2,0)--(2.5,0);
 \end{circuitikz}\\
-$X_C=R=-\dfrac{1}{2\pi \cdot f \cdot C}$\\
-$f_G=-\dfrac{1}{2\pi \cdot R \cdot C}$\\
+$X_C=R=\dfrac{1}{2\pi \cdot f \cdot C}$\\
+$f_G=\dfrac{1}{2\pi \cdot R \cdot C}$\\
 \textbf{Frage 4: Skizziere die Schaltung eines RC – Tiefpassfilters. Gib seine Grenzfrequenz an.}\\
   \begin{circuitikz} \draw
 			(0,0) to[V<=$U_{in}$,i^>=$I$] (0,2)
@@ -185,8 +186,8 @@ $f_G=-\dfrac{1}{2\pi \cdot R \cdot C}$\\
 						(2,2)--(2.5,2)
 						(2,0)--(2.5,0);
 \end{circuitikz}\\
-$X_C=R=-\dfrac{1}{2\pi \cdot f \cdot C}$\\
-$f_G=-\dfrac{1}{2\pi \cdot R \cdot C}$\\
+$X_C=R=\dfrac{1}{2\pi \cdot f \cdot C}$\\
+$f_G=\dfrac{1}{2\pi \cdot R \cdot C}$\\
 \textbf{Frage 4: Skizziere die Schaltung eines RL – Hochpassfilters. Gib seine Grenzfrequenz an.}\\
   \begin{circuitikz} \draw
 			(0,0) to[V<=$U_{in}$,i^>=$I$] (0,2)
@@ -232,19 +233,20 @@ Der Tiefpass versucht den Strom konstant zu halten und erhöht deswegen schlagar
 \textbf{Frage 4: Durch welche beiden Messungen lassen sich Filter besonders effektiv charakterisieren?}\\
 Sprungantwort und Frequenzverhalten.\\
 \textbf{Wie gehst Du dabei praktisch vor?}\\
-\\
+Rechtecksignal für Sprungantwort.\\
+Sinusförmiges Signal für Frequenzverhalten.\\
 \textbf{Frage 4: Wie verhält sich die Ausgangsspannung eines Tiefpassfilters bei sinusförmigen Eingangsspannungen mit Frequenzen weit unter der Grenzfrequenz?}\\
 Fast genauso wie die Eingangsspannung.\\
 \textbf{Wie verhält sich die Ausgangsspannung eines Tiefpassfilters bei rechteckförmigen Eingangsspannungen mit Periodenzeiten kleiner als die Zeitkonstante?}\\
-\\
+Die Ecken des Rechtecks werden leicht abgerundet.\\
 \textbf{Frage 4: Wie verläuft die Übertragungsfunktion eines Tiefpassfilters bei Frequenzen deutlich höher als die Grenzfrequenz?}\\
-Sie werden fast vollständig blockiert.\\
+Sie werden gedämpft umso weiter von der Grenzfrequenz entfernt.\\
 \textbf{Durch welche elektrotechnische Größe wird dieser Verlauf quantifiziert?}\\
-\\
+Filtersteilheit (Steigung im Bode Diagramm) [$\frac{dB}{Dekade}$]\\
 \textbf{Frage 4: Wie verläuft die Übertragungsfunktion eines Hochpassfilters bei Frequenzen deutlich niedriger als die Grenzfrequenz?}\\
-Sie werden fast vollständig blockiert.\\
+Sie werden gedämpft umso weiter von der Grenzfrequenz entfernt.\\
 \textbf{Durch welche elektrotechnische Größe wird dieser Verlauf quantifiziert?}\\
-\\
+Filtersteilheit (Steigung im Bode Diagramm) [$\frac{dB}{Dekade}$]\\
 \textbf{Frage 5: Welchen Vorteil haben Tiefpassfilter 2. Ordnung gegenüber Tiefpassfiltern 1. Ordnung?}\\
 \begin{circuitikz} \draw
 			(0,0) to[V<=$U_{in}$,i^>=$I$] (0,2)
@@ -256,13 +258,41 @@ Sie werden fast vollständig blockiert.\\
 						(4,0)--(4.5,0);
 \end{circuitikz}\\
 Abfall der Frequenz um $40dB/Dekade$ statt $20$. Dh. Effektiver\\
+Steilere Dämpfung \& höherer Phasengang\\
 \textbf{Skizziere die Übertragungsfunktionen im Frequenzbereich.}\\
-\includegraphics[width=7cm]{tiefpass_2o.png}\\\\
+\includegraphics[width=10cm]{tiefpass_2o.png}\\
 \textbf{Frage 5: Dieses Diagramm zeigt zwei Sprungantworten eines dynamischen Systems 2. Ordnung, beispielsweise eines LCR - Bandpassfilters.\\
-Was sagen diese beiden Sprungantworten über die Dämpfung aus? \\
-\includegraphics[width=4cm,keepaspectratio]{sprungantwort.jpg}\\
-1. Antwort: $\dfrac{R}{2L}\geq\dfrac{1}{\sqrt{L\cdot C}}$\\
-2. Antwort: $\dfrac{R}{2L} < \dfrac{1}{\sqrt{L\cdot C}}$\\
-Wie ist das möglich, dass eine negative Spannung auftritt, obwohl nur passive Bauelemente verwendet werden?}\\
+Was sagen diese beiden Sprungantworten über die Dämpfung aus?}\\
+
+\begin{figure}[H]
+\minipage{0.49\textwidth}
+	\begin{center}
+	\includegraphics[width=4cm,keepaspectratio]{sprungantwort.jpg}
+	\end{center}
+\endminipage\hfill
+\minipage{0.49\textwidth}
+	\begin{center}
+	\begin{circuitikz} \draw
+				(0,0) to[V<=$U_{in}$,i^>=$I$] (0,2)
+						-- (1,2)
+						to[R]    (3,2)
+			(1,2)	to[C,*-*] (1,0)
+						-- (0,0)
+						(3,2)--(3.5,2)
+						(1,0)--(3.5,0)
+			(3,2)	to[L,v^>=$U_{out}$,*-*] (3,0);
+	\end{circuitikz}
+\end{center}
+\endminipage\hfill
+\end{figure}
+
+%$\omega = \dfrac{1}{\sqrt{LC}}$
+
+%1. Antwort: $\dfrac{R}{2L}\geq\dfrac{1}{\sqrt{L\cdot C}}$
+1. Antwort: Je größer der Widerstand, desto größer die Dämpfung\\
+%2. Antwort: $\dfrac{R}{2L} < \dfrac{1}{\sqrt{L\cdot C}}$ 
+2. Antwort: Widerstand so klein, dass das System schwingt\\
+\textbf{Wie ist das möglich, dass eine negative Spannung auftritt, obwohl nur passive Bauelemente verwendet werden?}\\
 Aufgrund des Schwingungsverhaltens zwischen Kondensator und Spule.\\
+
 \end{document}
