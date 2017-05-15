@@ -177,6 +177,7 @@ Nein, da wir die Phasenverschiebungen der einzelnen Leitungen nicht kennen.\\
 \end{circuitikz}\\
 $X_C=R=\dfrac{1}{2\pi \cdot f \cdot C}$\\
 $f_G=\dfrac{1}{2\pi \cdot R \cdot C}$\\
+\newpage
 \textbf{Frage 4: Skizziere die Schaltung eines RC – Tiefpassfilters. Gib seine Grenzfrequenz an.}\\
   \begin{circuitikz} \draw
 			(0,0) to[V<=$U_{in}$,i^>=$I$] (0,2)
@@ -221,15 +222,16 @@ $f_G=\dfrac{R}{2\pi \cdot L}$\\
 						(4,0)--(4.5,0);
 \end{circuitikz}\\
 $f_0=\dfrac{1}{2\pi\sqrt{C\cdot L}}$\\
+\newpage
 \textbf{Frage 4: Skizziere das Bode-Diagramm eines RC - Hochpassfilters. Achte auf die korrekte Achsenteilung!}\\
 \includegraphics[height=7cm]{hochpass_bode.png}\\
 \textbf{Frage 4: Skizziere die Sprungantwort eines Tiefpassfilters 1. Ordnung.}\\
-\includegraphics[width=7cm]{sprung_tiefpass.png}\\
+\includegraphics[width=7cm]{sprung_tiefpass.jpg}\\
 \textbf{Skizziere die Sprungantwort eines Hochpassfilters 1. Ordnung.}\\
-\includegraphics[width=7cm]{sprung_hochpass.png}\\
+\includegraphics[width=7cm]{sprung_hochpass.jpg}\\
 \textbf{Begründe Deine Darstellungen.}\\
-Der Hochpass versucht die Spannung konstant zu halten und erhöht deswegen schlagartig die Spannung bis diese langsam absinkt.\\
-Der Tiefpass versucht den Strom konstant zu halten und erhöht deswegen schlagartig den Strom.\\
+\textit{Tiefpass}: Der Kondensator wird geladen bis die Eingangsspannung fast erreicht wird. Ist dieser voll liegt nun die komplette Spannung am Ausgang an.//
+\textit{Hochpass}: Sobald der Kondensator quasi voll geladen auf die Eingangsspannung ist, liegt das selbe Potential am Ausgang an wie auf der Masse.//
 \textbf{Frage 4: Durch welche beiden Messungen lassen sich Filter besonders effektiv charakterisieren?}\\
 Sprungantwort und Frequenzverhalten.\\
 \textbf{Wie gehst Du dabei praktisch vor?}\\
@@ -237,16 +239,17 @@ Rechtecksignal für Sprungantwort.\\
 Sinusförmiges Signal für Frequenzverhalten.\\
 \textbf{Frage 4: Wie verhält sich die Ausgangsspannung eines Tiefpassfilters bei sinusförmigen Eingangsspannungen mit Frequenzen weit unter der Grenzfrequenz?}\\
 Fast genauso wie die Eingangsspannung.\\
-\textbf{Wie verhält sich die Ausgangsspannung eines Tiefpassfilters bei rechteckförmigen Eingangsspannungen mit Periodenzeiten kleiner als die Zeitkonstante?}\\
-Die Ecken des Rechtecks werden leicht abgerundet.\\
+\newpage
+\textbf{Wie verhält sich die \textcolor[rgb]{0,0,1}{Ausgangsspannung} eines Tiefpassfilters bei \textcolor[rgb]{1,0,0}{rechteckförmigen Eingangsspannungen} mit Periodenzeiten kleiner als die Zeitkonstante?}\\
+\includegraphics[width=10cm]{TP_Rechteck.png}\\
 \textbf{Frage 4: Wie verläuft die Übertragungsfunktion eines Tiefpassfilters bei Frequenzen deutlich höher als die Grenzfrequenz?}\\
 Sie werden gedämpft umso weiter von der Grenzfrequenz entfernt.\\
 \textbf{Durch welche elektrotechnische Größe wird dieser Verlauf quantifiziert?}\\
-Filtersteilheit (Steigung im Bode Diagramm) [$\frac{dB}{Dekade}$]\\
+Filtersteilheit (Steigung im Bode Diagramm) $\left[\frac{dB}{Dekade}\right]$\\
 \textbf{Frage 4: Wie verläuft die Übertragungsfunktion eines Hochpassfilters bei Frequenzen deutlich niedriger als die Grenzfrequenz?}\\
 Sie werden gedämpft umso weiter von der Grenzfrequenz entfernt.\\
 \textbf{Durch welche elektrotechnische Größe wird dieser Verlauf quantifiziert?}\\
-Filtersteilheit (Steigung im Bode Diagramm) [$\frac{dB}{Dekade}$]\\
+Filtersteilheit (Steigung im Bode Diagramm) $\left[\frac{dB}{Dekade}\right]$\\
 \textbf{Frage 5: Welchen Vorteil haben Tiefpassfilter 2. Ordnung gegenüber Tiefpassfiltern 1. Ordnung?}\\
 \begin{circuitikz} \draw
 			(0,0) to[V<=$U_{in}$,i^>=$I$] (0,2)
@@ -261,6 +264,7 @@ Abfall der Frequenz um $40dB/Dekade$ statt $20$. Dh. Effektiver\\
 Steilere Dämpfung \& höherer Phasengang\\
 \textbf{Skizziere die Übertragungsfunktionen im Frequenzbereich.}\\
 \includegraphics[width=10cm]{tiefpass_2o.png}\\
+\newpage
 \textbf{Frage 5: Dieses Diagramm zeigt zwei Sprungantworten eines dynamischen Systems 2. Ordnung, beispielsweise eines LCR - Bandpassfilters.\\
 Was sagen diese beiden Sprungantworten über die Dämpfung aus?}\\
 
