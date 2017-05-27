@@ -1,2 +1,6 @@
 *.aux
 *.log
+
+#gnuplottex
+*-gnuplottex-fig*.gnuplot
+*-gnuplottex-fig*.pdf
