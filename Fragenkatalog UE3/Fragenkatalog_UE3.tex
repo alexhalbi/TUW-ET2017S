@@ -299,7 +299,7 @@ Nein da sie abgeschwächt wird.\\
 						set label "-1" at 0.01,-1.8
 						set arrow 1 from 0,1 to 0.2,1 nohead filled lc "grey"
 						set arrow 2 from 0,-1 to 0.2,-1 nohead filled lc "grey"
-						Uout(t)= t<=0?0:Uin(t-0.001)<1&&Uin(t)>1?10:Uin(t-0.001)>-1&&Uin(t)<-1?-10:Uin(t)<1&Uin(t)>-1?Uout(t-0.001):Uin(t)>-1?10:-10
+						Uout(t)= t<=0?0:Uin(t-0.001)<1&&Uin(t)>1?-10:Uin(t-0.001)>-1&&Uin(t)<-1?10:Uin(t)<1&Uin(t)>-1?Uout(t-0.001):Uin(t)>-1?-10:10
 						Uin(t)=10*sin(20*pi*t)
             plot [0:0.2] [-15:15] Uin(x), Uout(x)
         \end{gnuplot}
