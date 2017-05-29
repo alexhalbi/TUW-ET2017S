@@ -178,7 +178,7 @@ $U_{out}=-I \cdot R_2=-\frac{U_{in}}{R_1}\cdot R_2=-U_{in}\cdot \frac{R_2}{R_1}$
 	\draw (2,1.5) node[op amp, yscale=-1] (OPV) {};
 	\draw (0,0) node [rground] (G1) {};
 	\draw let \p1=(OPV.+),\p2=(OPV.out) in 
-		(0,0) to[V<=$U_{in}$,i^>=$I$] (0,\y1)
+		(0,0) to[V<=$U_{in}$] (0,\y1)
 						-- (OPV.+);
 	\draw let \p1=(OPV.-),\p2=(OPV.out) in 
 	  (OPV.-)   -- (\x1,0) 
@@ -201,7 +201,7 @@ $\dfrac{U_{out}}{U_{in}}=\dfrac{R_2+R_1}{R_1} \Rightarrow U_{out}=U_{in}\cdot \l
 	\draw (2,1.5) node[op amp] (OPV) {};
 	\draw (0,0) node [rground] (G1) {};
 	\draw let \p1=(OPV.-),\p2=(OPV.out) in 
-		(0,0) to[V<=$U_{in}$,i^>=$I$] (0,\y1)
+		(0,0) to[V<=$U_{in}$] (0,\y1)
 						-- (OPV.-);
 	\draw let \p1=(OPV.+),\p2=(OPV.out) in 
 	  (OPV.+)   -- (\x1,0) 
@@ -210,13 +210,11 @@ $\dfrac{U_{out}}{U_{in}}=\dfrac{R_2+R_1}{R_1} \Rightarrow U_{out}=U_{in}\cdot \l
 						  node [rground] {}
 		(OPV.out) to[R=$R_2$,-*] (\x2,0)
 		(OPV.out) to[short,-o] ++(1,0)
-						  node[anchor=west] {$U_{out}$}
-		(\x2,0)   to[short,-o] ++(1,0)
-							node[anchor=west] {$U_{in}$};
+						  node[anchor=west] {$U_{out}$};
 \end{circuitikz}
 \end{center}
 \textbf{Woran erkennst Du, dass es sich um einen Schmitt Trigger und nicht um einen linearen Verstärker handelt?}\\
-An der Mitkopplung am Plus Eingang.
+An der Mitkopplung. (Plus Eingang verbunden mit Ausgang)
 
 \textbf{Frage 3: Operationsverstärkers als invertierender Schmitt Trigger:\\
 Dessen Ausgangsspannungsbereich beträgt $\pm 10V$.\\
@@ -226,13 +224,13 @@ Sie müssen gleich groß sein. (Spannungsteiler)
 \textbf{Frage 3: Skizziere die Schaltung eines Operationsverstärkers als nichtinvertierender Verstärker. Der Operationsverstärker wird als ideal betrachtet.}
 \begin{center}
 \begin{circuitikz} 
-	\draw (2,1.5) node[op amp] (OPV) {};
+	\draw (2,1.5) node[op amp, yscale=-1] (OPV) {};
 	\draw (0,0) node [rground] (G1) {};
-	\draw let \p1=(OPV.-),\p2=(OPV.out) in 
-		(0,0) to[V<=$U_{in}$,i^>=$I$] (0,\y1)
-						-- (OPV.-);
 	\draw let \p1=(OPV.+),\p2=(OPV.out) in 
-	  (OPV.+)   -- (\x1,0) 
+		(0,0) to[V<=$U_{in}$] (0,\y1)
+						-- (OPV.+);
+	\draw let \p1=(OPV.-),\p2=(OPV.out) in 
+	  (OPV.-)   -- (\x1,0) 
 						  to[short,-*] (\x2,0)
 						  to[R=$R_1$] (\x2,-1.5)
 						  node [rground] {}
@@ -249,7 +247,7 @@ Ausgangswiderstand ist 0
 
 \textbf{Frage 3: Skizziere die Schaltung eines Operationsverstärkers als invertierender Verstärker. Der Operationsverstärker wird als ideal betrachtet.}
 \begin{center}
-\begin{circuitikz} 
+\begin{circuitikz}
 	\draw (3.5,1.5) node[op amp] (OPV) {};
 	\draw let \p1=(OPV.+) in (\x1,0) node [rground] (G2) {} -- (OPV.+);
 	\draw (0,0) node [rground] (G1) {};
@@ -271,22 +269,42 @@ Ausgangswiderstand ist 0
 \textbf{Frage 4: Ein Operationsverstärker ist als nichtinvertierender Verstärker geschalten.\\
 Skizziere den Verlauf der Verstärkung dieser Schaltung als Funktion der Frequenz (doppelt logarithmischer Maßstab).\\
 Zeichne ein, welche maximale Verstärkung die Schaltung bei $0.1f_g$, $1f_g$, $10f_g$, $100f_g$ haben kann. ($f_g = $ Grenzfrequenz).}\\
-\begin{center}
-\includegraphics[width=14cm]{Nichtinvt_OPV_fg.png}
-\end{center}
+
+\begin{figure}[H]
+	\centering
+	\begin{gnuplot}[terminal=pdf]
+			set sample 1000
+			set ylabel 'dB'
+			set logscale x
+			set arrow 1 from 1000,80 to 10000000,0 nohead filled lt 1
+			set arrow 2 from 1,80 to 1000,80 nohead filled lt 1
+			lbl_pos = 0+abs(85-0)*1/40
+			set arrow 3 from 1000,0 to 1000,85 nohead  filled back lw 1 lc rgb "blue           
+			set arrow 4 from 100,0 to 100,85 nohead  filled back lw 1 lc rgb "blue"    
+			set arrow 5 from 10000,0 to 10000,85 nohead  filled back lw 1 lc rgb "blue"  
+			set arrow 6 from 100000,0 to 100000,85 nohead  filled back lw 1 lc rgb "blue
+			set arrow 7 from 1,20 to 1000000,20 nohead filled lt 2
+			set arrow 8 from 1000000,20 to 10000000,0 nohead filled lt 2
+			set label " 1*fg" at 1000,lbl_pos textcolor rgb "blue"             
+			set label " 0,1*fg" at 100,lbl_pos textcolor rgb "blue"   
+			set label " 10*fg" at 10000,lbl_pos textcolor rgb "blue"  
+			set label " 100*fg" at 100000,lbl_pos textcolor rgb "blue"
+			plot [1:10000000] [0:85] -100 title 'OPV', -100 title 'Schaltung'
+	\end{gnuplot}
+\end{figure}
 
 \textbf{Frage 4: Ein Operationsverstärker ist als nichtinvertierender Verstärker geschalten. Der Gegenkopplungswiderstand hat $9k\Omega$, der Widerstand zur Masse $1k\Omega$.
 Der Operationsverstärker hat eine Verstärkung von $80dB$ bei Gleichspannung und eine Grenzfrequenz von $1kHz$.}\\
 \textbf{Bestimme die Gleichspannungsverstärkung der \textit{Schaltung} und die maximale Frequenz, bei der diese Verstärkung noch erreicht wird.}\\
 $U_{out}=U_{in} \cdot \left( 1+ \frac{R_2}{R_1} \right)= 1 \cdot \left( 1+ \frac{9k}{1k} \right)=10$\\
-Eine 10 fache Verstärkung ($20 dB$) die Verstärkung wird bis knapp vor der Grenzfrequenz noch erreicht.
+Eine 10 fache Verstärkung ($20dB$) wird bis $1MHz$ noch erreicht ($f_g=1kHz$ mit $80dB$, $-20dB/Dekade \Rightarrow f_g+10^3=1MHz$).
 
 \textbf{Frage 4: Ein Operationsverstärker ist als nichtinvertierender Verstärker geschalten. Der Gegenkopplungswiderstand hat $9k\Omega$, der Widerstand zur Masse $1k\Omega$.
 Der Operationsverstärker hat eine Verstärkung von $80dB$ bei Gleichspannung und eine Grenzfrequenz von $1kHz$.}\\
 \textbf{Du legst an den Eingang eine $1kHz$ Rechteckspannung. Wird diese in akzeptabler Weise übertragen? Begründe Deine Entscheidung!}\\
-Nein da sie bereits um $3dB$ Abgeschwächt wird.\\
+Ja weil die Frequenz weniger als $\frac{1}{10}$ der Grenzfrequenz der \textit{Schaltung} ist.\\
 \textbf{Du legst an den Eingang eine $1MHz$ Rechteckspannung. Wird diese in akzeptabler Weise übertragen? Begründe Deine Entscheidung!}\\
-Nein da sie abgeschwächt wird.\\
+Nein da sie abgeschwächt wird über der Grenzfrequenz der \textit{Schaltung}.\\
 \textbf{Frage 4: Ein Operationsverstärker ist als invertierender Schmitt Trigger geschalten. Der Operationsverstärker hat eine Verstärkung von $80dB$ bei Gleichspannung und eine Grenzfrequenz von $1kHz$. Die Schaltpunkte sind $\pm 1V$.}\\
 \textbf{Du legst an den Eingang eine $10Hz$ Sinusspannung mit $\pm 10V$ Amplitude. Skizziere Eingangs- und Ausgangsspannungen als Funktion der Zeit. Begründe Deine Entscheidung!}\\
 		\begin{figure}[H]
@@ -354,7 +372,7 @@ Kein Ausgang mehr, da Grenzfrequenz weit überschritten!
 						set label "-1/RC" at 0.1,-5 textcolor lt 2
 						set arrow 1 from 0,-5 to 0.05,-5 nohead filled lt 2
 						Uout(t)=-5*(t<=0?0:ceil(t)%2==1?t+(floor(t)):-t-(floor(t)))+(t<0?0:ceil(t)%2==0?-1:1)*10*floor(t)-(t<0?0:ceil(t)%2==0?5:0)
-						Uin(t)=t<=0?0:ceil(t)%2==0?10:-10
+						Uin(t)=t<=0?0:ceil(t)%2==1?10:-10
             plot [0:10] [-12:12] Uin(x), Uout(x)
         \end{gnuplot}
 			\end{figure}
@@ -367,7 +385,7 @@ Kein Ausgang mehr, da Grenzfrequenz weit überschritten!
             set ylabel 'U'
 						set label "-1/RC" at 0.1,-0.7 textcolor lt 2
 						set arrow 1 from 0,-0.7 to 0.05,-0.7 nohead filled lt 2
-						Uout(t)=0.7*cos(t)
+						Uout(t)=0.7*cos(t)-0.7
 						Uin(t)=sin(t)
             plot [0:10] [-2:2] Uin(x), Uout(x)
         \end{gnuplot}
