@@ -48,7 +48,7 @@ endbox/.style={pattern=crosshatch,minimum height=.8cm}}
 \usepackage{framed, color}
 
 
-\newcommand{\UE}{Übung 2}
+\newcommand{\UE}{Übung 3}
 \newcommand{\name}{Fragenkatalog zum Überprüfungsgespräch Elektrotechnische Grundlagen}
 \title{\textbf{Fragenkatalog zum Überprüfungsgespräch Elektrotechnische Grundlagen Übungen für TI 2017 - \UE}}
 
@@ -79,7 +79,7 @@ Spannung $U[$Volt $V]$, Strom $I[$Ampere $A]$, Widerstand $R[$Ohm $\Omega]$,Leis
 Die potentielle Energie(=Arbeit) die durch eine Ladungstrennung gespeichert wurde.\\
 \textbf{Frage 2: Elektrischer Strom: Nenne Definition (nicht über das Ohmsche Gesetz!), Formelzeichen und Einheit}\\
 Ladung eines Elektrons $Q_e=1,6 \cdot 10^{-19}C=1,6 \cdot 10^{-19}A\cdot s$\\
-$\frac{6*10^{18}e^-}{1s}=\frac{As}{1s} \rightarrow 6*10^{18}$ Elektronen fließen durch einen Leiter pro Sekunde bei $1A$\\
+$\frac{6*10^{18}e^-}{1s}=\frac{As}{1s} \rightarrow 6 \cdot 10^{18}$ Elektronen fließen durch einen Leiter pro Sekunde bei $1A$\\
 \textbf{Frage 2: Elektrischer Widerstand: Nenne Definition (nicht über das Ohmsche Gesetz!), Formelzeichen und Einheit}\\
 Ist eine Materialeigenschaft\\
 Beispiel Kupfer $17m\Omega \cdot mm^2/m$\\
@@ -147,10 +147,19 @@ Tera   & T  & $10^{12}$\\
 \end{center}
 
 \textbf{Gib seine Übertragungsfunktion an.}
-\begin{center}
-\includegraphics[width=7cm]{OPV_Uebertragung.png}
-\end{center}
-Tiefpassverhalten: Verstärkung ca $80dB=1000-fache$ Verstärkung, Grenzfrequenz ca $1kHz$
+\begin{figure}[H]
+	\centering
+	\begin{gnuplot}[terminal=pdf]
+			set sample 1000
+			set ylabel 'dB'
+			set xlabel 'Frequenz'
+			set logscale x
+			set arrow 1 from 1000,80 to 10000000,0 nohead filled lt 1
+			set arrow 2 from 1,80 to 1000,80 nohead filled lt 1
+			plot [1:10000000] [0:85] -100 title 'OPV'
+	\end{gnuplot}
+\end{figure}
+Tiefpassverhalten: Verstärkung ca $80dB=10.000-fache$ Verstärkung, Grenzfrequenz ca $1kHz$
 
 \textbf{Frage 3: Skizziere die Schaltung eines Operationsverstärkers als invertierender Verstärker.}
 \begin{center}
@@ -172,6 +181,7 @@ Tiefpassverhalten: Verstärkung ca $80dB=1000-fache$ Verstärkung, Grenzfrequenz
 \textbf{Leite dessen Übertragungsfunktion aus den Kirchhoffschen Regeln ab.}\\
 $U_{out}=-I \cdot R_2=-\frac{U_{in}}{R_1}\cdot R_2=-U_{in}\cdot \frac{R_2}{R_1}$
 
+\newpage
 \textbf{Frage 3: Skizziere die Schaltung eines Operationsverstärkers als nichtinvertierender Verstärker.}
 \begin{center}
 \begin{circuitikz} 
@@ -275,6 +285,7 @@ Zeichne ein, welche maximale Verstärkung die Schaltung bei $0.1f_g$, $1f_g$, $1
 	\begin{gnuplot}[terminal=pdf]
 			set sample 1000
 			set ylabel 'dB'
+			set xlabel 'Frequenz'
 			set logscale x
 			set arrow 1 from 1000,80 to 10000000,0 nohead filled lt 1
 			set arrow 2 from 1,80 to 1000,80 nohead filled lt 1
@@ -293,6 +304,7 @@ Zeichne ein, welche maximale Verstärkung die Schaltung bei $0.1f_g$, $1f_g$, $1
 	\end{gnuplot}
 \end{figure}
 
+\newpage
 \textbf{Frage 4: Ein Operationsverstärker ist als nichtinvertierender Verstärker geschalten. Der Gegenkopplungswiderstand hat $9k\Omega$, der Widerstand zur Masse $1k\Omega$.
 Der Operationsverstärker hat eine Verstärkung von $80dB$ bei Gleichspannung und eine Grenzfrequenz von $1kHz$.}\\
 \textbf{Bestimme die Gleichspannungsverstärkung der \textit{Schaltung} und die maximale Frequenz, bei der diese Verstärkung noch erreicht wird.}\\
@@ -307,25 +319,27 @@ Ja weil die Frequenz weniger als $\frac{1}{10}$ der Grenzfrequenz der \textit{Sc
 Nein da sie abgeschwächt wird über der Grenzfrequenz der \textit{Schaltung}.\\
 \textbf{Frage 4: Ein Operationsverstärker ist als invertierender Schmitt Trigger geschalten. Der Operationsverstärker hat eine Verstärkung von $80dB$ bei Gleichspannung und eine Grenzfrequenz von $1kHz$. Die Schaltpunkte sind $\pm 1V$.}\\
 \textbf{Du legst an den Eingang eine $10Hz$ Sinusspannung mit $\pm 10V$ Amplitude. Skizziere Eingangs- und Ausgangsspannungen als Funktion der Zeit. Begründe Deine Entscheidung!}\\
-		\begin{figure}[H]
-			\centering
-			\begin{gnuplot}[terminal=pdf]
-            set sample 1000
-            set xlabel 't'
-            set ylabel 'U'
-						set label " 1" at 0.01,1.8
-						set label "-1" at 0.01,-1.8
-						set arrow 1 from 0,1 to 0.2,1 nohead filled lc "grey"
-						set arrow 2 from 0,-1 to 0.2,-1 nohead filled lc "grey"
-						Uout(t)= t<=0?0:Uin(t-0.001)<1&&Uin(t)>1?-10:Uin(t-0.001)>-1&&Uin(t)<-1?10:Uin(t)<1&Uin(t)>-1?Uout(t-0.001):Uin(t)>-1?-10:10
-						Uin(t)=10*sin(20*pi*t)
-            plot [0:0.2] [-15:15] Uin(x), Uout(x)
-        \end{gnuplot}
-			\end{figure}
+\begin{figure}[H]
+	\centering
+	\begin{gnuplot}[terminal=pdf]
+				set sample 1000
+				set xlabel 't'
+				set ylabel 'U'
+				set label " 1" at 0.01,1.8
+				set label "-1" at 0.01,-1.8
+				set arrow 1 from 0,1 to 0.2,1 nohead filled lc "grey"
+				set arrow 2 from 0,-1 to 0.2,-1 nohead filled lc "grey"
+				Uout(t)= t<=0?0:Uin(t-0.001)<1&&Uin(t)>1?-10:Uin(t-0.001)>-1&&Uin(t)<-1?10:Uin(t)<1&Uin(t)>-1?Uout(t-0.001):Uin(t)>-1?-10:10
+				Uin(t)=10*sin(20*pi*t)
+				plot [0:0.2] [-15:15] Uin(x), Uout(x)
+		\end{gnuplot}
+	\end{figure}
+
+\newpage
 \textbf{Du legst an den Eingang eine $10MHz$ Sinusspannung mit $\pm 10V$ Amplitude. Skizziere Eingangs- und Ausgangsspannungen als Funktion der Zeit. Begründe Deine Entscheidung!}\\
 Kein Ausgang mehr, da Grenzfrequenz weit überschritten!
 
-\newpage
+
 \textbf{Frage 5: Ein Operationsverstärker ist als invertierender Integrator geschalten. Skizziere die Schaltung und gib die Übertragungsfunktion an.}\\
 \begin{center}
 \begin{circuitikz} 
