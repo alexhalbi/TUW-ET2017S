@@ -4,3 +4,5 @@
 #gnuplottex
 *-gnuplottex-fig*.gnuplot
 *-gnuplottex-fig*.pdf
+*.pgf-plot.gnuplot
+*.pgf-plot.table

@@ -31,6 +31,7 @@
 \usepackage{algpseudocode} %for pseudocode
 \usepackage[siunitx,european,straightlabels,straightvoltages]{circuitikz} %draw Electrical Circuits
 \usepackage[miktex]{gnuplottex}
+\usepackage{pgfplots}
 
 \input{../mymeters.tex}
 
@@ -145,97 +146,150 @@ RC-Filter mit $R=10k\Omega$ und $C=10nF$\\
 $f_{G}=\dfrac{1}{2 \pi \cdot R \cdot C}=\dfrac{1}{2\pi \cdot 10 \cdot 10}MHz=0,0015 MHz=1,5kHz$\\
 Signale bis zu $0,15kHz$ werden akzeptabel Übertragen.
 
-\textbf{Frage 3: Ein Sensor hat einen Ausgangswiderstand von $10k\Omega$. Das Signal wird über ein $100m$ langes Koaxialkabel mit einer Kapazität von $100pF/m$ übertragen. Das Ausgangssignal des Sensors ist ein Sprung von $0.0V$ auf $+3.16V$. Nach welcher Zeit erkennt der Empfänger den Sprung, wenn er bei einer
-Spannung von etwa $+2.00V$ schaltet.}
+\textbf{Frage 3: Ein Sensor hat einen Ausgangswiderstand von $10k\Omega$. Das Signal wird über ein $100m$ langes Koaxialkabel mit einer Kapazität von $100pF/m$ übertragen. Das Ausgangssignal des Sensors ist ein Sprung von $0.0V$ auf $+3.16V$. Nach welcher Zeit erkennt der Empfänger den Sprung, wenn er bei einer Spannung von etwa $+2.00V$ schaltet.}\\
+$2V$ sind etwa $63\%$ von $3,16V$ daher ist es etwa nach der Zeitkonstante $\tau =R\cdot C=10k \cdot 100 \cdot 100p=100\mu s$
 
-\\
+\textbf{Frage 3: Ein Sensor hat einen Ausgangswiderstand von $10k\Omega$. Das Signal wird über ein $100m$ langes Koaxialkabel mit einer Kapazität von $100pF/m$ übertragen. Der Sensor liefert ein Sinussignal von etwa $3.3V_{PP}$. Bei welcher Frequenz kommen am Empfänger noch etwa $2.33V_{PP}$ an?}\\
+$20 \cdot log(\dfrac{2,33}{3,3})\approx -3$ \\
+Daraus folgt bei der Grenzfrequenz $f_{G}=\dfrac{1}{2 \pi \cdot R \cdot C}=\dfrac{1}{2\pi \cdot 10 \cdot 10}MHz=0,0015 MHz=1,5kHz$
 
-\textbf{Frage 3: Ein Sensor hat einen Ausgangswiderstand von $10k\Omega$. Das Signal wird über ein $100m$ langes Koaxialkabel mit einer Kapazität von $100pF/m$ übertragen. Der Sensor liefert ein Sinussignal von etwa 3.3Vpp. Bei welcher Frequenz kommen am Empfänger noch etwa 2.33Vpp an?}
+\textbf{Welche Phasenverschiebung hat das Signal auf seinem Weg durch das Kabel bei dieser Frequenz?}
+$-45^\circ$
 
-\\
+\textbf{Frage 3: Ein Sensor hat einen Ausgangswiderstand von $10k\Omega$. Das Signal wird über ein $100m$ langes Koaxialkabel mit einer Kapazität von $100pF/m$ übertragen. Der Sensor liefert ein unsymmetrisches Rechtecksignal: $+10V$ für $100\mu s$, dann $-10V$ für $900\mu s$. Das Signal am Empfänger muss $99\%$ des Sensorsignals sein. Kann dieses Signal über dieses Kabel korrekt übertragen werden?}\\
+Frequenz des Signals $\dfrac{1}{100\mu s + 900\mu s}=1kHz$\\
+$f_{G}=\dfrac{1}{2 \pi \cdot R \cdot C}=\dfrac{1}{2\pi \cdot 10 \cdot 10}MHz=0,0015 MHz=1,5kHz$\\
+Wird nicht genau genug übertragen da größer als $\frac{1}{10}f_G$!
 
-\textbf{Welche Phasenverschiebung hat das Signal auf seinem Weg durch das Kabel
-bei dieser Frequenz?}
+\textbf{Frage 3: Ein Taster liefert folgendes Signal:} \includegraphics{Taster.png}\\
+\textbf{Mit welchem Filter kannst Du dieses Prellen aus dem Signal entfernen?}\\
+Tiefpass\\
+\textbf{Mit welcher Schaltung kannst Du danach die Flankensteilheit wieder erhöhen?}\\
+Schmitt-Trigger
 
-\\
-
-\textbf{Frage 3: Ein Sensor hat einen Ausgangswiderstand von $10k\Omega$. Das Signal wird über ein $100m$ langes Koaxialkabel mit einer Kapazität von $100pF/m$ übertragen. Der Sensor liefert ein unsymmetrisches Rechtecksignal: $+10V$ für $100\mu s$, dann $-10V$ für $900\mu s$. Das Signal am Empfänger muss $99\%$ des Sensorsignals sein. Kann dieses Signal über dieses Kabel korrekt übertragen werden?}
-
-\\
-
-\textbf{Frage 3: Ein Taster liefert folgendes Signal:}\\
-\includegraphics{Taster.png}\\
-\\
-
-\textbf{Mit welchem Filter kannst Du dieses Prellen aus dem Signal entfernen?}
-
-\\
-
-\textbf{Mit welcher Schaltung kannst Du danach die Flankensteilheit wieder erhöhen?}
-
-\\
-
+\newpage
 \textbf{Frage 3: Erkläre das Verhalten dieser Schaltung:}\\
 \includegraphics{Schaltung_1.png}\\
-\\
+Bei hohen Frequenzen lässt lässt der Kondensator immer mehr Spannung durch. Dadurch hört der OPV früher auf zu regeln. Dadurch wird das Tiefpassverhalten des OPV gestärkt.\\
 
 \textbf{Frage 3: Skizziere die Übertragungsfunktion dieser Schaltung:\\
 (Doppelt logarithmischer Maßstab der Achsen)}\\
 \includegraphics{Schaltung_2.png}\\
-\\
+OPV Verstärkung 2-fach$=6dB$\\
+$f_G=\dfrac{1}{2 \pi \cdot R \cdot C}=\dfrac{1}{2\pi\cdot 47 \cdot 220}MHz\approx 15Hz$\\
+\begin{figure}[H]
+	\centering
+	\begin{gnuplot}[terminal=pdf]
+			set sample 1000
+			set ylabel 'dB'
+			set xlabel 'Frequenz'
+			set logscale x
+			set arrow 1 from 0.01,6 to 15,6 nohead filled lt 1
+			set arrow 2 from 15,6 to 1015,-34 nohead filled lt 1
+			set arrow 3 from 15,-36 to 15,7 nohead  filled back lw 1 lc rgb "blue
+			set label " fg" at 15,0 textcolor rgb "blue"
+			plot [0.01:1000] [-36:7] -10000 title 'Schaltung'
+	\end{gnuplot}
+\end{figure}
+\newpage
+\textbf{Frage 4: Vergleiche das Bode-Diagramm mit einem Spektrum. Was sind die Gemeinsamkeiten?}\\
+%TODO
+\textbf{Was wird womit beschrieben?}\\
 
-\textbf{Frage 4: Vergleiche das Bode‐Diagramm mit einem Spektrum. Was sind die Gemeinsamkeiten?}
 
-\\
-
-\textbf{Was wird womit beschrieben?}
-
-\\
-
-\textbf{Frage 4: Elektrische Spannung kann unter anderem in $V_{PP}$, $V_{RMS}$ und $dBV_{RMS}$ angegeben werden. Beschreibe die Anwendungszwecke und Unterschiede zwischen diesen Arten der Quantifizierung.}\\
-
-\\
-
+\textbf{Frage 4: Elektrische Spannung kann unter anderem in $V_{PP}$, $V_{RMS}$ und $dBV_{RMS}$ bzw. $V_{SS}$, $V_{EFF}$ und $dBV_{EFF}$ angegeben werden. Beschreibe die Anwendungszwecke und Unterschiede zwischen diesen Arten der Quantifizierung.}\\
+\begin{itemize}
+	\item Volt Peak-Peak/Spitze-Spitze: $V_{PP}=Amplitude$
+	\item Root-Mean-Square/Effektivwert: $\sqrt{\frac{1}{T}\int_0^TU^2(t)dt}$
+	\item $dBV_{RMS}$/$dBV_{EFF}$: $dB$ vom Effektivwert
+\end{itemize}
 \textbf{Eine sinusförmige Spannung hat einen Maximalwert von $+5V$ und einen
-Minimalwert von $-5V$. Berechne die Spannung in $V_{PP}$, $V_{RMS}$ und $dBV_{RMS}$}\\
+Minimalwert von $-5V$. Berechne die Spannung in $V_{PP}$, $V_{RMS}$ und $dBV_{RMS}$ bzw. $V_{SS}$, $V_{EFF}$ und $dBV_{EFF}$}\\
+\begin{itemize}
+	\item $V_{PP}=V_{SS}=10V$
+	\item $V_{RMS}=V_{EFF}=\dfrac{10}{\sqrt{2}}=7,07V$
+\end{itemize}
 
-\textbf{Frage 4: Elektrische Spannung kann unter anderem in $V_{SS}$, $V_{EFF}$ und $dBV_{EFF}$ angegeben werden. Beschreibe die Anwendungszwecke und Unterschiede zwischen diesen Arten der Quantifizierung.}\\
-
-\\
-
-\textbf{Eine sinusförmige Spannung hat einen Maximalwert von $+5V$ und einen
-Minimalwert von $-5V$. Berechne die Spannung in $V_{SS}$, $V_{EFF}$ und $dBV_{EFF}$}\\
-
-\textbf{Frage 4: Gegeben ist eine konstante Kosinusspannung der Amplitude A und der Kreisfrequenz $\omega_S : U(t) = A cos (\omega_St)$\\Stelle das kontinuierliche Fourier ‐ Integral dazu auf. }\\
-
+\textbf{Frage 4: Gegeben ist eine konstante Kosinusspannung der Amplitude A und der Kreisfrequenz $\omega_S : U(t) = A cos (\omega_St)$\\Stelle das kontinuierliche Fourier-Integral dazu auf. }\\
+$F(n)=\frac{1}{2\pi}\int_{-\infty}^{+\infty}f(x)e^{-inx}dx=\frac{A}{2\pi}\int_{-\infty}^{+\infty}cos(\omega_St)e^{-int}dt$
 
 \textbf{Existiert dieses Integral überhaupt? Begründe deine Entscheidung!}\\
+Nein, da das kontinuierliche Fourier-Integral nur für \textbf{nicht} periodische Funktionen verwendet werden kann!
 
+\textbf{Frage 4: Wozu braucht man in der praktischen Fourier-Analyse Fensterfunktionen?}\\
+Um Signale in gewissen Grenzen betrachten zu können. Z.B.: Herausschneiden einer einzelnen Periode, bestimmen der Periode
 
-\textbf{Frage 4: Wozu braucht man in der praktischen Fourier-Analyse Fensterfunktionen? Nach welchen Kriterien wählst Du die Fensterfunktion für Deine Messaufgabe?}\\
-
+\textbf{Nach welchen Kriterien wählst Du die Fensterfunktion für Deine Messaufgabe?}\\
+Anhand der Eingangsfunktion und der benötigten Parameter
+\begin{itemize}
+	\item minimaler Leck-Effekt (Nadelimpulse am Beginn und Ende)
+	\item genaue Amplitudenmessung
+	\item scharfe Frequenzmessung
+\end{itemize}
 
 \textbf{Frage 4: Was ist der Unterschied zwischen Fourier-Reihe und Fourier-Integral? }\\
+Fourier-Reihe: periodische Funktionen\\
+Fourier-Integral: nicht periodische Funktionen
 
-\textbf{Was ist der Unterschied zwischen kontinuierlicher-, diskreter- und schneller Fourier-Transformation?}
+\textbf{Was ist der Unterschied zwischen kontinuierlicher-, diskreter- und schneller Fourier-Transformation?}\\
+kontinuierlich: Funktion wird Integriert\\
+diskret: Funktion nicht bekannt, Messwerte werden verwendet\\
+schnell: Verbesserung der DFT für Computer (Anzahl Stützstellen eine Zweierpotenz)
 
-\\
+\textbf{Frage 5: Du misst eine unbekannte periodische Eingangsspannung mit einem digitalen Oszilloskop. Bei einer Horizontalablenkung $1ms/DIV$ siehst Du eine volle Periode eines schönen Sinussignals. Das Bild wandert langsam von links nach rechts. Welche Schlussfolgerung ziehst Du aus diesem Bild?}\\
+Kein reiner Sinus
 
-\textbf{Frage 5: Du misst eine unbekannte periodische Eingangsspannung mit einem digitalen Oszilloskop. Bei einer Horizontalablenkung $1ms/DIV$ siehst Du eine volle Periode eines schönen Sinussignals. Das Bild wandert langsam von links nach rechts. Welche Schlussfolgerung ziehst Du aus diesem Bild?}
-	
-\\
+\textbf{Was kannst Du machen, um fatale Fehlinterpretationen zu vermeiden?}\\
+Mehr als nur eine Periode betrachten!
 
-\textbf{Was kannst Du machen, um fatale Fehlinterpretationen zu vermeiden?}
-	
-\textbf{Frage 5: Du sollst ein unsymmetrisches $1kHz$ Rechtecksignal $+10V$ für $100\mu s$, dann $-10V$ für $900\mu s$ effektiv digitalisieren. Wähle eine geeignete Abtastrate und begründe Deine Entscheidung.}
+\textbf{Frage 5: Du sollst ein unsymmetrisches $1kHz$ Rechtecksignal $+10V$ für $100\mu s$, dann $-10V$ für $900\mu s$ effektiv digitalisieren. Wähle eine geeignete Abtastrate und begründe Deine Entscheidung.}\\
+$10$ Messpunkte pro Periode. Gute Darstellung der Sprünge, nicht zu hoch.
 
-\\
+\textbf{Frage 5: Was ist das Gibbs'sche Phänomen?}
+\begin{center}
+\begin{tikzpicture}
+  \begin{axis}[
+    no markers,
+    samples=100,
+    smooth,
+    domain=-0.6:0.6,
+		xmin=-0.6, xmax=0.6,
+    axis lines=middle,
+    width=\linewidth,
+		cycle list name=color list,
+		legend pos=outer north east,
+  ]
+    \foreach \N in {1,2,...,20} {%
+      \addplot+ [mark = none, solid] gnuplot[raw gnuplot] {%
+        set samples 200;
+        s(m, x) = 4/((2*m-1)*pi)*sin(2*(2*m-1)*pi*x);
+        plot[-1.2:1.4] sum [m=1:\N] s(m,x)
+      };
+      \addlegendentryexpanded{$S_{\N}(f,x)$}
+    }
+  \end{axis}
+\end{tikzpicture}
+\end{center}
+Überschwingen bei Unstetigkeitsstellen bei der Fourier-Transformation. Können nie entfernt werden, werden immer höher und schmaler je höher die Approximation.
 
-\textbf{Frage 5: Was ist das Gibbs'sche Phänomen? Was kann man praktisch gegen die Auswirkungen dieses Phänomens tun?}
+\textbf{Was kann man praktisch gegen die Auswirkungen dieses Phänomens tun?}\\
+%TODO
+\newpage
+\textbf{Frage 5: Ein Sensor liefert ein Signal, bestehend aus den beiden Sinusfunktionen $sin(10Hz \cdot t)$ und $sin(11Hz \cdot t)$. Dein erstes Übertragungssystem ist perfekt linear mit der Übertragungsfunktion
+$U_{a} = 3 \cdot U_{in}$. Dein zweites Übertragungssystem ist nichtlinear mit der Übertragungsfunktion $U_a =  U_{in}^2$. \\Hinweise: $sin^2(x)=\frac{1}{2}(1-cos(2x)$\\$sin(x)\cdot sin(y) = \frac{1}{2}(cos(x-y)-cos(x+y))$\\ 
+Skizziere die beiden aus den Übertragungssystemen resultierenden Spektren und interpretiere dieses Ergebnis! (Hinweis: Eine komplette Berechnung ist nicht erforderlich!).}\\
+\begin{figure}[H]
+	\centering
+	\begin{gnuplot}[terminal=pdf]
+			set sample 1000
+			set ylabel 'U'
+			set xlabel 't'
+			U1(t)=sin(10*t)
+			U2(t)=sin(11*t)
+			Sys1(t)=3*(U1(t)+U2(t))
+			Sys2(t)=(U1(t)+U2(t))*(U1(t)+U2(t))
+			plot [0:10] Sys1(x) title 'lineares System', Sys2(x) title 'nichtlineares System'
+	\end{gnuplot}
+\end{figure}
 
-\\
-
-\textbf{Frage 5: Ein Sensor liefert ein Signal, bestehend aus den beiden Sinusfunktionen $sin (10Hz \cdot t)$ und $sin(11Hz \cdot t)$. Dein erstes Übertragungssystem ist perfekt linear mit der Übertragungsfunktion
-$U_{a} = 3 \cdot U_{in}$. Dein zweites Übertragungssystem ist nichtlinear mit der Übertragungsfunktion $U_a =  U_{in}^2$. \\Hinweise: $sin^2(x)=\frac{1}{2}(1-cos(2x)$\\$sin(x)\cdot sin(y) = \frac{1}{2}(cos(x-y)-cos(x+y))$\\ Skizziere die beiden aus den Übertragungssystemen resultierenden Spektren und
-interpretiere dieses Ergebnis! (Hinweis: Eine komplette Berechnung ist nicht erforderlich!).}
 \end{document}
