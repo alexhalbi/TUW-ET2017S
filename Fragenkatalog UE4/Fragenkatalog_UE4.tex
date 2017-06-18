@@ -1,0 +1,240 @@
+\documentclass[11pt,a4paper]{scrartcl}
+\usepackage[utf8]{inputenc}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{fancyhdr}
+\usepackage{float}
+\pagestyle{fancy}
+\usepackage[a4paper,
+			bottom=1.7in,
+			left=1.2in,
+			right=1.2in,
+			top=1.2in,
+			headsep = 35pt]
+	{geometry}
+\usepackage{tikz}% for drawing automata etc
+\usetikzlibrary{automata,arrows,chains,shapes.misc,scopes,petri,matrix,patterns}
+%\usepackage[x11names]{xcolor}
+%\usepackage[parfill]{parskip}
+\usepackage{array}
+%\usepackage{gslist}
+%\usepackage{subfigure}
+\usepackage{subcaption}
+\usepackage{enumitem}
+\usepackage{algpseudocode} %for pseudocode
+\usepackage[siunitx,european,straightlabels,straightvoltages]{circuitikz} %draw Electrical Circuits
+\usepackage[miktex]{gnuplottex}
+
+\input{../mymeters.tex}
+
+\author{Alexander Halbarth}
+
+\setlist[enumerate]{label=\alph*)}
+%\setlist[itemize]{label=$\rightarrow$}
+
+
+ \tikzset{
+endbox/.style={pattern=crosshatch,minimum height=.8cm}}
+
+%\partfont{\centering}
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\usepackage{framed, color}
+
+
+\newcommand{\UE}{Übung 4}
+\newcommand{\name}{Fragenkatalog zum Überprüfungsgespräch Elektrotechnische Grundlagen}
+\title{\textbf{Fragenkatalog zum Überprüfungsgespräch Elektrotechnische Grundlagen Übungen für TI 2017 - \UE}}
+
+
+\newcommand{\ul}[1]{\underline{#1}} % für unterstreichen von einzelnen Symbolen einfach \ul x - wenn man ein Wort unterstrichen will \ul{wort}
+%\newcommand\sy[1]{{\underline{\ifmmode\mathtt{#1}\else\texttt{#1}\fi}}} % ähnlich wie \ul - verwendet aber andere Schriftart
+%\newlistt\sys\sy{\hspace{1pt}}{}{}{^} % identisch zu \sy, \sys{wort} unterstreicht aber jeden Buchstaben einzeln und \sy{wort} unterstreicht das ganze Wort
+% (sofern das Alphabet nur aus einzelnen Zeichen besteht ist \sys{wort} einfacher
+
+
+%no line indent
+\setlength\parindent{0pt}
+
+\fancyhead[R]{\UE}
+\fancyhead[L]{\name}
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\footrulewidth}{0pt}
+\renewcommand{\headrulewidth}{0.5pt}
+
+
+\begin{document}
+\maketitle
+\textbf{Frage 1: Was machst Du gerade im Labor und welchen Sinn hat das?}\\
+\textbf{Frage 2: Nenne die Grundgrößen der Elektrotechnik, deren Formelzeichen und Einheit.}\\
+Spannung $U[$Volt $V]$, Strom $I[$Ampere $A]$, Widerstand $R[$Ohm $\Omega]$,Leistung $P[$Watt $W]$\\
+\textbf{Frage 2: Elektrische Spannung: Nenne Definition (nicht über das Ohmsche Gesetz!), Formelzeichen und Einheit}\\
+Die potentielle Energie(=Arbeit) die durch eine Ladungstrennung gespeichert wurde.\\
+\textbf{Frage 2: Elektrischer Strom: Nenne Definition (nicht über das Ohmsche Gesetz!), Formelzeichen und Einheit}\\
+Ladung eines Elektrons $Q_e=1,6 \cdot 10^{-19}C=1,6 \cdot 10^{-19}A\cdot s$\\
+$\frac{6*10^{18}e^-}{1s}=\frac{As}{1s} \rightarrow 6 \cdot 10^{18}$ Elektronen fließen durch einen Leiter pro Sekunde bei $1A$\\
+\textbf{Frage 2: Elektrischer Widerstand: Nenne Definition (nicht über das Ohmsche Gesetz!), Formelzeichen und Einheit}\\
+Ist eine Materialeigenschaft\\
+Beispiel Kupfer $17m\Omega \cdot mm^2/m$\\
+\textbf{Frage 2: Elektrische Leistung: Nenne Definition, Formelzeichen und Einheit}\\
+Die in einer Zeitspannung umgesetzte elektrische Energie bezogen auf die Zeitspanne.\\
+\textbf{Frage 2: Wie berechnet man die elektrische Leistung in einem Gleichstromkreis?}\\
+$U=R \cdot I \rightarrow P=U \cdot I$\\
+\textbf{Berechne die an einem Widerstand entstehende Leistung, wenn durch ihn bei einer Spannung von $2V$ ein Strom von $3A$ fließt.}\\
+$6W$\\
+\textbf{Frage 2: Welcher Phasenwinkel besteht zwischen Wechselspannung und Wechselstrom an einem idealen Kondensator?}\\
+Die Spannung folgt dem Strom um $90^\circ=\pi/2$ nach. (eigentlich $-90^\circ$)\\
+\textbf{Welcher Phasenwinkel besteht zwischen Wechselspannung und Wechselstrom an einer idealen Induktivität?\\
+(Die Vorzeichen brauchen nicht explizit angegeben zu werden, müssen aber verglichen werden).}\\
+Der Strom folgt der Spannung nach um $90^\circ=\pi/2$ nach. (eigentlich $+90^\circ$)\\
+\textit{Gehen in entgegengesetzte Richtungen!}\\
+\textbf{Frage 2: Formuliere das ohmsche Gesetz.}\\
+$U=R*I$\\
+\textbf{Berechne den Widerstand, wenn bei einem Strom von $3A$ eine Spannung von $3V$ abfällt.}\\
+\textbf{Frage 2: Berechne den Strom, wenn an einem Widerstand von $5\Omega$ eine Spannung von $10V$ abfällt.}\\
+\textbf{Frage 2: Berechne die Spannung, wenn durch einen Widerstand von $10\Omega$ ein Strom von $5A$ fließt. }\\
+\textbf{Frage 2: Formuliere die Kirchhoffschen Regeln.}\\
+\textbf{Auf welchem physikalischen Grundprinzip beruhen diese?}\\
+\textit{Energieerhaltung}\\
+Maschenregel: Summe aller Spannungen muss 0 ergeben.\\
+Knotenregel: Summe aller Ströme muss 0 ergeben.\\
+\textbf{An einem Spannungsteiler liegen $9V$. Am oberen Widerstand liegen $6V$ an.}\\
+\textbf{Berechne die Spannung am unteren Widerstand.}\\
+\textbf{Frage 2: In einen Stromknoten mit drei Leitungen fließen aus einer Leitung $2A$ hinein und aus einer anderen Leitung $3A$ hinein. Was geschieht in der dritten Leitung?}\\
+\textbf{Frage 2: Nenne die Zehnerpotenzen zu den SI - Präfixen Nano, Milli und Mikro. Nenne die SI - Präfixe zu: $10^3, 10^6, 10^9$}\\
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Präfix} & \textbf{Zeichen} & \textbf{Faktor}\\
+\hline\hline
+Piko   & p  & $10^{-12}$\\
+\hline
+Nano   & n  & $10^{-9}$\\
+\hline
+Mikro  & $\mu$ & $10^{-6}$\\
+\hline
+Milli  & m  & $10^{-3}$\\
+\hline
+Zenti  & c  & $10^{-2}$\\
+\hline
+Dezi   & d  & $10^{-1}$\\
+\hline\hline
+Deka   & da & $10^{1}$\\
+\hline
+Hekto  & h  & $10^{2}$\\
+\hline
+Kilo   & k  & $10^{3}$\\
+\hline
+Mega   & M  & $10^{6}$\\
+\hline
+Giga   & G  & $10^{9}$\\
+\hline
+Tera   & T  & $10^{12}$\\
+\hline
+\end{tabular}\\
+\newpage
+\textbf{Frage 3: Ein Sensor hat einen Ausgangswiderstand von $10k\Omega$. Das Signal wird über ein $100m$ langes Koaxialkabel mit einer Kapazität von $100pF/m$ übertragen. Der Sensor liefert ein symmetrisches Rechtecksignal. Schätze die höchste Frequenz dieses Signals ab, das über diese Strecke mit
+akzeptabler Qualität übertragen werden kann.}\\
+
+\\
+
+\textbf{Frage 3: Ein Sensor hat einen Ausgangswiderstand von $10k\Omega$. Das Signal wird über ein $100m$ langes Koaxialkabel mit einer Kapazität von $100pF/m$ übertragen. Das Ausgangssignal des Sensors ist ein Sprung von $0.0V$ auf $+3.16V$. Nach welcher Zeit erkennt der Empfänger den Sprung, wenn er bei einer
+Spannung von etwa $+2.00V$ schaltet.}
+
+\\
+
+\textbf{Frage 3: Ein Sensor hat einen Ausgangswiderstand von $10k\Omega$. Das Signal wird über ein $100m$ langes Koaxialkabel mit einer Kapazität von $100pF/m$ übertragen. Der Sensor liefert ein Sinussignal von etwa 3.3Vpp. Bei welcher Frequenz kommen am Empfänger noch etwa 2.33Vpp an?}
+
+\\
+
+\textbf{Welche Phasenverschiebung hat das Signal auf seinem Weg durch das Kabel
+bei dieser Frequenz?}
+
+\\
+
+\textbf{Frage 3: Ein Sensor hat einen Ausgangswiderstand von $10k\Omega$. Das Signal wird über ein $100m$ langes Koaxialkabel mit einer Kapazität von $100pF/m$ übertragen. Der Sensor liefert ein unsymmetrisches Rechtecksignal: $+10V$ für $100\mu s$, dann $-10V$ für $900\mu s$. Das Signal am Empfänger muss $99\%$ des Sensorsignals sein. Kann dieses Signal über dieses Kabel korrekt übertragen werden?}
+
+\\
+
+\textbf{Frage 3: Ein Taster liefert folgendes Signal:}\\
+\includegraphics{Taster.png}\\
+\\
+
+\textbf{Mit welchem Filter kannst Du dieses Prellen aus dem Signal entfernen?}
+
+\\
+
+\textbf{Mit welcher Schaltung kannst Du danach die Flankensteilheit wieder erhöhen?}
+
+\\
+
+\textbf{Frage 3: Erkläre das Verhalten dieser Schaltung:}\\
+\includegraphics{Schaltung_1.png}\\
+\\
+
+\textbf{Frage 3: Skizziere die Übertragungsfunktion dieser Schaltung:\\
+(Doppelt logarithmischer Maßstab der Achsen)}\\
+\includegraphics{Schaltung_2.png}\\
+\\
+
+\textbf{Frage 4: Vergleiche das Bode‐Diagramm mit einem Spektrum. Was sind die Gemeinsamkeiten?}
+
+\\
+
+\textbf{Was wird womit beschrieben?}
+
+\\
+
+\textbf{Frage 4: Elektrische Spannung kann unter anderem in $V_{PP}$, $V_{RMS}$ und $dBV_{RMS}$ angegeben werden. Beschreibe die Anwendungszwecke und Unterschiede zwischen diesen Arten der Quantifizierung.}\\
+
+\\
+
+\textbf{Eine sinusförmige Spannung hat einen Maximalwert von $+5V$ und einen
+Minimalwert von $-5V$. Berechne die Spannung in $V_{PP}$, $V_{RMS}$ und $dBV_{RMS}$}\\
+
+\textbf{Frage 4: Elektrische Spannung kann unter anderem in $V_{SS}$, $V_{EFF}$ und $dBV_{EFF}$ angegeben werden. Beschreibe die Anwendungszwecke und Unterschiede zwischen diesen Arten der Quantifizierung.}\\
+
+\\
+
+\textbf{Eine sinusförmige Spannung hat einen Maximalwert von $+5V$ und einen
+Minimalwert von $-5V$. Berechne die Spannung in $V_{SS}$, $V_{EFF}$ und $dBV_{EFF}$}\\
+
+\textbf{Frage 4: Gegeben ist eine konstante Kosinusspannung der Amplitude A und der Kreisfrequenz $\omega_S : U(t) = A cos (\omega_St)$\\Stelle das kontinuierliche Fourier ‐ Integral dazu auf. }\\
+
+
+\textbf{Existiert dieses Integral überhaupt? Begründe deine Entscheidung!}\\
+
+
+\textbf{Frage 4: Wozu braucht man in der praktischen Fourier-Analyse Fensterfunktionen? Nach welchen Kriterien wählst Du die Fensterfunktion für Deine Messaufgabe?}\\
+
+
+\textbf{Frage 4: Was ist der Unterschied zwischen Fourier-Reihe und Fourier-Integral? }\\
+
+\textbf{Was ist der Unterschied zwischen kontinuierlicher-, diskreter- und schneller Fourier-Transformation?}
+
+\\
+
+\textbf{Frage 5: Du misst eine unbekannte periodische Eingangsspannung mit einem digitalen Oszilloskop. Bei einer Horizontalablenkung $1ms/DIV$ siehst Du eine volle Periode eines schönen Sinussignals. Das Bild wandert langsam von links nach rechts. Welche Schlussfolgerung ziehst Du aus diesem Bild?}
+	
+\\
+
+\textbf{Was kannst Du machen, um fatale Fehlinterpretationen zu vermeiden?}
+	
+\textbf{Frage 5: Du sollst ein unsymmetrisches $1kHz$ Rechtecksignal $+10V$ für $100\mu s$, dann $-10V$ für $900\mu s$ effektiv digitalisieren. Wähle eine geeignete Abtastrate und begründe Deine Entscheidung.}
+
+\\
+
+\textbf{Frage 5: Was ist das Gibbs'sche Phänomen? Was kann man praktisch gegen die Auswirkungen dieses Phänomens tun?}
+
+\\
+
+\textbf{Frage 5: Ein Sensor liefert ein Signal, bestehend aus den beiden Sinusfunktionen $sin (10Hz \cdot t)$ und $sin(11Hz \cdot t)$. Dein erstes Übertragungssystem ist perfekt linear mit der Übertragungsfunktion
+$U_{a} = 3 \cdot U_{in}$. Dein zweites Übertragungssystem ist nichtlinear mit der Übertragungsfunktion $U_a =  U_{in}^2$. \\Hinweise: $sin^2(x)=\frac{1}{2}(1-cos(2x)$\\$sin(x)\cdot sin(y) = \frac{1}{2}(cos(x-y)-cos(x+y))$\\ Skizziere die beiden aus den Übertragungssystemen resultierenden Spektren und
+interpretiere dieses Ergebnis! (Hinweis: Eine komplette Berechnung ist nicht erforderlich!).}
+\end{document}
