@@ -140,26 +140,34 @@ Tera   & T  & $10^{12}$\\
 \hline
 \end{tabular}\\
 \newpage
-\textbf{Frage 3: Ein Sensor hat einen Ausgangswiderstand von $10k\Omega$. Das Signal wird über ein $100m$ langes Koaxialkabel mit einer Kapazität von $100pF/m$ übertragen. Der Sensor liefert ein symmetrisches Rechtecksignal. Schätze die höchste Frequenz dieses Signals ab, das über diese Strecke mit
-akzeptabler Qualität übertragen werden kann.}\\
-RC-Filter mit $R=10k\Omega$ und $C=10nF$\\
-$f_{G}=\dfrac{1}{2 \pi \cdot R \cdot C}=\dfrac{1}{2\pi \cdot 10 \cdot 10}MHz=0,0015 MHz=1,5kHz$\\
-Signale bis zu $0,15kHz$ werden akzeptabel Übertragen.
-
-\textbf{Frage 3: Ein Sensor hat einen Ausgangswiderstand von $10k\Omega$. Das Signal wird über ein $100m$ langes Koaxialkabel mit einer Kapazität von $100pF/m$ übertragen. Das Ausgangssignal des Sensors ist ein Sprung von $0.0V$ auf $+3.16V$. Nach welcher Zeit erkennt der Empfänger den Sprung, wenn er bei einer Spannung von etwa $+2.00V$ schaltet.}\\
-$2V$ sind etwa $63\%$ von $3,16V$ daher ist es etwa nach der Zeitkonstante $\tau =R\cdot C=10k \cdot 100 \cdot 100p=100\mu s$
-
-\textbf{Frage 3: Ein Sensor hat einen Ausgangswiderstand von $10k\Omega$. Das Signal wird über ein $100m$ langes Koaxialkabel mit einer Kapazität von $100pF/m$ übertragen. Der Sensor liefert ein Sinussignal von etwa $3.3V_{PP}$. Bei welcher Frequenz kommen am Empfänger noch etwa $2.33V_{PP}$ an?}\\
-$20 \cdot log(\dfrac{2,33}{3,3})\approx -3$ \\
-Daraus folgt bei der Grenzfrequenz $f_{G}=\dfrac{1}{2 \pi \cdot R \cdot C}=\dfrac{1}{2\pi \cdot 10 \cdot 10}MHz=0,0015 MHz=1,5kHz$
-
-\textbf{Welche Phasenverschiebung hat das Signal auf seinem Weg durch das Kabel bei dieser Frequenz?}
-$-45^\circ$
-
-\textbf{Frage 3: Ein Sensor hat einen Ausgangswiderstand von $10k\Omega$. Das Signal wird über ein $100m$ langes Koaxialkabel mit einer Kapazität von $100pF/m$ übertragen. Der Sensor liefert ein unsymmetrisches Rechtecksignal: $+10V$ für $100\mu s$, dann $-10V$ für $900\mu s$. Das Signal am Empfänger muss $99\%$ des Sensorsignals sein. Kann dieses Signal über dieses Kabel korrekt übertragen werden?}\\
-Frequenz des Signals $\dfrac{1}{100\mu s + 900\mu s}=1kHz$\\
-$f_{G}=\dfrac{1}{2 \pi \cdot R \cdot C}=\dfrac{1}{2\pi \cdot 10 \cdot 10}MHz=0,0015 MHz=1,5kHz$\\
-Wird nicht genau genug übertragen da größer als $\frac{1}{10}f_G$!
+\textbf{Frage 3: Ein Sensor hat einen Ausgangswiderstand von $10k\Omega$. Das Signal wird über ein $100m$ langes Koaxialkabel mit einer Kapazität von $100pF/m$ übertragen.}\\
+Das Ersatzschaltbild dafür ist ein RC Tiefpass Filter. Die Kapazität ergibt sich durch $100m \cdot 100pF/m=10nF$
+\begin{center}
+\begin{circuitikz} \draw
+			(0,0) to[V<=Sensor,i^>=$I$] (0,2)
+						to[R=$10k\Omega$]    (2,2)
+						to[C=$10nF$,*-*] (2,0)
+						-- (0,0)
+						(2,2)--(2.5,2)
+						(2,0)--(2.5,0);
+\end{circuitikz}
+\end{center}
+\begin{itemize}
+	\item \textbf{Der Sensor liefert ein symmetrisches Rechtecksignal. Schätze die höchste Frequenz dieses Signals ab, das über diese Strecke mit akzeptabler Qualität übertragen werden kann.}\\
+				$f_{G}=\dfrac{1}{2 \pi \cdot R \cdot C}=\dfrac{1}{2\pi \cdot 10 \cdot 10}MHz=0,0015 MHz=1,5kHz$\\
+				Signale bis zu $0,15kHz$ werden akzeptabel Übertragen.
+	\item \textbf{Das Ausgangssignal des Sensors ist ein Sprung von $0.0V$ auf $+3.16V$. Nach welcher Zeit erkennt der Empfänger den Sprung, wenn er bei einer Spannung von etwa $+2.00V$ schaltet.}\\
+				$2V$ sind etwa $63\%$ von $3,16V$ daher ist es etwa nach der Zeitkonstante $\tau =R\cdot C=10k \cdot 100 \cdot 100p\;s=100\mu s$
+	\item \textbf{Der Sensor liefert ein Sinussignal von etwa $3.3V_{PP}$. Bei welcher Frequenz kommen am Empfänger noch etwa $2.33V_{PP}$ an?}\\
+				$20 \cdot log(\dfrac{2,33}{3,3})\approx -3$ \\
+				Daraus folgt bei der Grenzfrequenz $f_{G}=\dfrac{1}{2 \pi \cdot R \cdot C}=\dfrac{1}{2\pi \cdot 10 \cdot 10}MHz=0,0015 MHz=1,5kHz$\\
+				\textbf{Welche Phasenverschiebung hat das Signal auf seinem Weg durch das Kabel bei dieser Frequenz?} $-45^\circ$
+	\item \textbf{Der Sensor liefert ein unsymmetrisches Rechtecksignal: $+10V$ für $100\mu s$, dann $-10V$ für $900\mu s$. Das Signal am Empfänger muss $99\%$ des Sensorsignals sein. Kann dieses Signal über dieses Kabel korrekt übertragen werden?}\\
+				Frequenz des Signals $\dfrac{1}{100\mu s + 900\mu s}=1kHz$\\
+				$f_{G}=\dfrac{1}{2 \pi \cdot R \cdot C}=\dfrac{1}{2\pi \cdot 10 \cdot 10}MHz=0,0015 MHz=1,5kHz$\\
+				Wird nicht genau genug übertragen da größer als $\frac{1}{10}f_G$!
+\end{itemize}
+\newpage
 
 \textbf{Frage 3: Ein Taster liefert folgendes Signal:} \includegraphics{Taster.png}\\
 \textbf{Mit welchem Filter kannst Du dieses Prellen aus dem Signal entfernen?}\\
@@ -167,19 +175,19 @@ Tiefpass\\
 \textbf{Mit welcher Schaltung kannst Du danach die Flankensteilheit wieder erhöhen?}\\
 Schmitt-Trigger
 
-\newpage
 \textbf{Frage 3: Erkläre das Verhalten dieser Schaltung:}\\
 \includegraphics{Schaltung_1.png}\\
-Bei hohen Frequenzen lässt lässt der Kondensator immer mehr Spannung durch. Dadurch hört der OPV früher auf zu regeln. Dadurch wird das Tiefpassverhalten des OPV gestärkt.\\
+Bei hohen Frequenzen lässt lässt der Kondensator immer mehr Spannung durch. Tiefpass Filter\\
+OPV als Komperator geschalten. Mögliche Schaltung für Prellreduktion.
 
 \textbf{Frage 3: Skizziere die Übertragungsfunktion dieser Schaltung:\\
 (Doppelt logarithmischer Maßstab der Achsen)}\\
-\includegraphics{Schaltung_2.png}\\
+\includegraphics[height=4cm]{Schaltung_2.png}\\
 OPV Verstärkung 2-fach$=6dB$\\
 $f_G=\dfrac{1}{2 \pi \cdot R \cdot C}=\dfrac{1}{2\pi\cdot 47 \cdot 220}MHz\approx 15Hz$\\
 \begin{figure}[H]
 	\centering
-	\begin{gnuplot}[terminal=pdf]
+	\begin{gnuplot}[terminal=pdf,scale=0.8]
 			set sample 1000
 			set ylabel 'dB'
 			set xlabel 'Frequenz'
@@ -191,33 +199,43 @@ $f_G=\dfrac{1}{2 \pi \cdot R \cdot C}=\dfrac{1}{2\pi\cdot 47 \cdot 220}MHz\appro
 			plot [0.01:1000] [-36:7] -10000 title 'Schaltung'
 	\end{gnuplot}
 \end{figure}
+\textit{Ab Grenzfrequenz des beschaltenen OPVs Filterverhalten 2. Ordnung}
 \newpage
-\textbf{Frage 4: Vergleiche das Bode-Diagramm mit einem Spektrum. Was sind die Gemeinsamkeiten?}\\
-%TODO
-\textbf{Was wird womit beschrieben?}\\
 
+\textbf{Frage 4: Vergleiche das Bode-Diagramm mit einem Spektrum. Was sind die Gemeinsamkeiten?}\\
+\textbf{Was wird womit beschrieben?}\\
+Beide über Frequenz dargestellt
+\begin{itemize}
+	\item Bode: Übertragungsfunktion
+	\item Spektrum: Stellt Frequenz dar aus dem Signal besteht
+\end{itemize}
 
 \textbf{Frage 4: Elektrische Spannung kann unter anderem in $V_{PP}$, $V_{RMS}$ und $dBV_{RMS}$ bzw. $V_{SS}$, $V_{EFF}$ und $dBV_{EFF}$ angegeben werden. Beschreibe die Anwendungszwecke und Unterschiede zwischen diesen Arten der Quantifizierung.}\\
 \begin{itemize}
-	\item Volt Peak-Peak/Spitze-Spitze: $V_{PP}=Amplitude$
-	\item Root-Mean-Square/Effektivwert: $\sqrt{\frac{1}{T}\int_0^TU^2(t)dt}$
-	\item $dBV_{RMS}$/$dBV_{EFF}$: $dB$ vom Effektivwert
+	\item Volt Peak-Peak/Spitze-Spitze: $V_{PP}=Amplitude$ \\Verwendet für Bauteileigenschaften
+	\item Root-Mean-Square/Effektivwert: $\sqrt{\frac{1}{T}\int_0^TU^2(t)dt}$ \\Verwendet in der Energietechnik
+	\item $dBV_{RMS}$/$dBV_{EFF}$: $dB$ vom Effektivwert (Bezug in diesem Fall $1V_{RMS}$ \\Verwendet zB in der Tontechnik
 \end{itemize}
 \textbf{Eine sinusförmige Spannung hat einen Maximalwert von $+5V$ und einen
 Minimalwert von $-5V$. Berechne die Spannung in $V_{PP}$, $V_{RMS}$ und $dBV_{RMS}$ bzw. $V_{SS}$, $V_{EFF}$ und $dBV_{EFF}$}\\
 \begin{itemize}
 	\item $V_{PP}=V_{SS}=10V$
-	\item $V_{RMS}=V_{EFF}=\dfrac{10}{\sqrt{2}}=7,07V$
+	\item $V_{RMS}=V_{EFF}=\dfrac{5}{\sqrt{2}}=5,535V_{RMS}$
+	\item $dBV_{RMS}=dBV_{EFF}=20\cdot log(\dfrac{V_{RMS}}{1V_{RMS}})=20\cdot log(5,535)=10,969dB$
 \end{itemize}
 
-\textbf{Frage 4: Gegeben ist eine konstante Kosinusspannung der Amplitude A und der Kreisfrequenz $\omega_S : U(t) = A cos (\omega_St)$\\Stelle das kontinuierliche Fourier-Integral dazu auf. }\\
-$F(n)=\frac{1}{2\pi}\int_{-\infty}^{+\infty}f(x)e^{-inx}dx=\frac{A}{2\pi}\int_{-\infty}^{+\infty}cos(\omega_St)e^{-int}dt$
+\textbf{Frage 4: Gegeben ist eine konstante Kosinusspannung der Amplitude A und der Kreisfrequenz $\omega_S : U(t) = A cos (\omega_St)$\\Stelle das kontinuierliche Fourier-Integral dazu auf. }
+\begin{itemize}
+	\item \textbf{Mathematik:} $F(n)=\frac{1}{2\pi}\int_{-\infty}^{+\infty}f(x)e^{-inx}dx=\frac{A}{2\pi}\int_{-\infty}^{+\infty}cos(\omega_St)e^{-int}dt$
+	\item \textbf{Elektrotechnik:} $F(\omega)=\frac{1}{2\pi}\int_{-\infty}^{+\infty}f(x)e^{-j\omega x}dx=\frac{A}{2\pi}\int_{-\infty}^{+\infty}cos(\omega_St)e^{-j \omega t}dt$
+\end{itemize}
 
 \textbf{Existiert dieses Integral überhaupt? Begründe deine Entscheidung!}\\
 Nein, da das kontinuierliche Fourier-Integral nur für \textbf{nicht} periodische Funktionen verwendet werden kann!
+\newpage
 
 \textbf{Frage 4: Wozu braucht man in der praktischen Fourier-Analyse Fensterfunktionen?}\\
-Um Signale in gewissen Grenzen betrachten zu können. Z.B.: Herausschneiden einer einzelnen Periode, bestimmen der Periode
+Um Signale in gewissen Grenzen betrachten zu können. Betrachtungszeitraum ist niemals unendlich! Z.B.: Herausschneiden einer einzelnen Periode, bestimmen der Periode
 
 \textbf{Nach welchen Kriterien wählst Du die Fensterfunktion für Deine Messaufgabe?}\\
 Anhand der Eingangsfunktion und der benötigten Parameter
@@ -237,13 +255,14 @@ diskret: Funktion nicht bekannt, Messwerte werden verwendet\\
 schnell: Verbesserung der DFT für Computer (Anzahl Stützstellen eine Zweierpotenz)
 
 \textbf{Frage 5: Du misst eine unbekannte periodische Eingangsspannung mit einem digitalen Oszilloskop. Bei einer Horizontalablenkung $1ms/DIV$ siehst Du eine volle Periode eines schönen Sinussignals. Das Bild wandert langsam von links nach rechts. Welche Schlussfolgerung ziehst Du aus diesem Bild?}\\
-Kein reiner Sinus
+\textit{Aliasing} Abtastrate ist schlecht!
 
 \textbf{Was kannst Du machen, um fatale Fehlinterpretationen zu vermeiden?}\\
-Mehr als nur eine Periode betrachten!
+Horizontale Skalierung erhöhen! Langsam reduzieren.
 
 \textbf{Frage 5: Du sollst ein unsymmetrisches $1kHz$ Rechtecksignal $+10V$ für $100\mu s$, dann $-10V$ für $900\mu s$ effektiv digitalisieren. Wähle eine geeignete Abtastrate und begründe Deine Entscheidung.}\\
-$10$ Messpunkte pro Periode. Gute Darstellung der Sprünge, nicht zu hoch.
+100 Messpunkte für die kleinste "`Periode"' $\rightarrow$ 1.000 Punkte gesamt $\rightarrow$ 1Megasample (1.000 Punkte pro Millisekunde bzw. 1.000.000 Punkte pro Sekunde)
+\newpage
 
 \textbf{Frage 5: Was ist das Gibbs'sche Phänomen?}
 \begin{center}
@@ -270,13 +289,15 @@ $10$ Messpunkte pro Periode. Gute Darstellung der Sprünge, nicht zu hoch.
   \end{axis}
 \end{tikzpicture}
 \end{center}
-Überschwingen bei Unstetigkeitsstellen bei der Fourier-Transformation. Können nie entfernt werden, werden immer höher und schmaler je höher die Approximation.
+Überschwingen bei Unstetigkeitsstellen bei der Fourier-Transformation. Können nie entfernt werden! Resultieren aus einer Approximation einer unstetigen Funktion durch unendlich stetige Funktionen.
 
 \textbf{Was kann man praktisch gegen die Auswirkungen dieses Phänomens tun?}\\
-%TODO
+Tiefpassfilter nach Signal hinzufügen
 \newpage
+
 \textbf{Frage 5: Ein Sensor liefert ein Signal, bestehend aus den beiden Sinusfunktionen $sin(10Hz \cdot t)$ und $sin(11Hz \cdot t)$. Dein erstes Übertragungssystem ist perfekt linear mit der Übertragungsfunktion
-$U_{a} = 3 \cdot U_{in}$. Dein zweites Übertragungssystem ist nichtlinear mit der Übertragungsfunktion $U_a =  U_{in}^2$. \\Hinweise: $sin^2(x)=\frac{1}{2}(1-cos(2x)$\\$sin(x)\cdot sin(y) = \frac{1}{2}(cos(x-y)-cos(x+y))$\\ 
+$U_{a} = 3 \cdot U_{in}$. Dein zweites Übertragungssystem ist nichtlinear mit der Übertragungsfunktion $U_a =  U_{in}^2$. \\
+Hinweise: $sin^2(x)=\frac{1}{2}(1-cos(2x))$\\$sin(x)\cdot sin(y) = \frac{1}{2}(cos(x-y)-cos(x+y))$\\ 
 Skizziere die beiden aus den Übertragungssystemen resultierenden Spektren und interpretiere dieses Ergebnis! (Hinweis: Eine komplette Berechnung ist nicht erforderlich!).}\\
 \begin{figure}[H]
 	\centering
