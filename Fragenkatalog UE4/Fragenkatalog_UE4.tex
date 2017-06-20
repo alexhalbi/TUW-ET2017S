@@ -32,6 +32,7 @@
 \usepackage[siunitx,european,straightlabels,straightvoltages]{circuitikz} %draw Electrical Circuits
 \usepackage[miktex]{gnuplottex}
 \usepackage{pgfplots}
+\usepackage{bm} %Bold Math
 
 \input{../mymeters.tex}
 
@@ -296,15 +297,14 @@ Tiefpassfilter nach Signal hinzufügen
 \newpage
 
 \textbf{Frage 5: Ein Sensor liefert ein Signal, bestehend aus den beiden Sinusfunktionen $sin(10Hz \cdot t)$ und $sin(11Hz \cdot t)$. Dein erstes Übertragungssystem ist perfekt linear mit der Übertragungsfunktion
-$U_{a} = 3 \cdot U_{in}$. Dein zweites Übertragungssystem ist nichtlinear mit der Übertragungsfunktion $U_a =  U_{in}^2$. \\
+$U_{a} = 3 \cdot U_{in}$. Dein zweites Übertragungssystem ist nichtlinear mit der Übertragungsfunktion $U_a =  (U_{in})^2$. \\
 Hinweise: $sin^2(x)=\frac{1}{2}(1-cos(2x))$\\$sin(x)\cdot sin(y) = \frac{1}{2}(cos(x-y)-cos(x+y))$\\ 
 Skizziere die beiden aus den Übertragungssystemen resultierenden Spektren und interpretiere dieses Ergebnis! (Hinweis: Eine komplette Berechnung ist nicht erforderlich!).}\\
 \begin{figure}[H]
 	\centering
-	\begin{gnuplot}[terminal=pdf]
+	\begin{gnuplot}[terminal=pdf,scale=0.8]
 			set sample 1000
 			set ylabel 'U'
-			set xlabel 't'
 			U1(t)=sin(10*t)
 			U2(t)=sin(11*t)
 			Sys1(t)=3*(U1(t)+U2(t))
@@ -313,4 +313,30 @@ Skizziere die beiden aus den Übertragungssystemen resultierenden Spektren und i
 	\end{gnuplot}
 \end{figure}
 
+\begin{math}
+\begin{aligned}
+U_{in}(t)&=sin(10t)+sin(11t)\\
+\bm{Sys1(t)} &\bm{:= 3(sin(10t)+sin(11t))}\\
+\bm{Sys2(t)} &\bm{:=} (sin(10t)+sin(11t))^2=sin(10t)^2+sin(11t)^2+2\cdot sin(10t)\cdot sin(11t)
+\\&=\frac{1}{2}(1-cos(20t))+\frac{1}{2}(1-cos(22t))+cos(1t)-cos(21t)
+\\&=\bm{1-\frac{1}{2}cos(20t)-\frac{1}{2}cos(22t)+cos(1t)-cos(21t)}\\
+\end{aligned}
+\end{math}\\
+Spektrum $Sys1$: $10Hz$,$11Hz$\\
+Spektrum $Sys2$: $0Hz$, $1Hz$, $20Hz$, $21Hz$, $22Hz$
+
+\begin{center}
+\begin{tikzpicture}[scale=0.8]
+\begin{axis}
+			\addplot+[ycomb] plot coordinates
+				{(10,3) (11,3)};
+      \addlegendentryexpanded{$Sys1$}
+			\addplot+[ycomb] plot coordinates
+				{(0,1) (20,-0.5) (22,-0.5) (1,1) (21,-1)};
+      \addlegendentryexpanded{$Sys2$}
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
 \end{document}
+
